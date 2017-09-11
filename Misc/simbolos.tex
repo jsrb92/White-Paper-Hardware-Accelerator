@@ -1,0 +1,95 @@
+%
+%	Symbols, etc.
+%
+ \message{*[simbolos]* Symbols.................................[sub defs]}
+ \usepackage{marvosym}
+%--------------------------------------------
+\newcommand{\ZZero}{\textnormal{\MVZero}\xspace}
+\newcommand{\OOne}{\textnormal{\MVOne}\xspace}
+\newcommand{\TTwo}{\textnormal{\MVTwo}\xspace}
+\newcommand{\TThree}{\textnormal{\MVThree}\xspace}
+\newcommand{\FFOur}{\textnormal{\MVFour}\xspace}
+\newcommand{\FFive}{\textnormal{\MVFive}\xspace}
+\newcommand{\SSix}{\textnormal{\MVSix}\xspace}
+\newcommand{\SSeven}{\textnormal{\MVSeven}\xspace}
+\newcommand{\EEight}{\textnormal{\MVEight}\xspace}
+\newcommand{\NNine}{\textnormal{\MVNine}\xspace}
+
+\newcommand{\Uno}{\ding{172}\xspace}
+\newcommand{\Dos}{\ding{173}\xspace}
+\newcommand{\Tres}{\ding{174}\xspace}
+\newcommand{\Cuatro}{\ding{175}\xspace}
+\newcommand{\Cinco}{\ding{176}\xspace}
+\newcommand{\Seis}{\ding{177}\xspace}
+\newcommand{\Siete}{\ding{178}\xspace}
+\newcommand{\Ocho}{\ding{179}\xspace}
+\newcommand{\Nueve}{\ding{180}\xspace}
+\newcommand{\Diez}{\ding{181}\xspace}
+%
+\newcommand{\UUno}{\ding{182}\xspace}
+\newcommand{\DDos}{\ding{183}\xspace}
+\newcommand{\TTres}{\ding{184}\xspace}
+\newcommand{\CCuatro}{\ding{185}\xspace}
+\newcommand{\CCinco}{\ding{186}\xspace}
+\newcommand{\SSeis}{\ding{187}\xspace}
+\newcommand{\SSiete}{\ding{188}\xspace}
+\newcommand{\OOcho}{\ding{189}\xspace}
+\newcommand{\NNueve}{\ding{190}\xspace}
+\newcommand{\DDiez}{\ding{191}\xspace}
+
+\newcommand*{\tickbox}{{\fboxsep 0pt%
+  \framebox[\height]{\vphantom{M}}}}
+\newcommand*{\xbox}{{\fboxsep 0pt%
+  \framebox[\height]{\vphantom{M}$\times$}}}
+\newcommand*{\Tickbox}{\framebox{\phantom{M}}}
+\newcommand*{\TickBox}{{\fboxsep 0pt%
+  \fbox{\rule{0em}{1em}\rule{1em}{0em}}}}
+
+% rules and lines to fill
+%  use: \rule{length}{line_thickness} as is \rule{10mm}{0.4pt}
+\newcommand*{\srule}[2][0pt]{%
+  \setbox0\hbox{#2}%
+  \rule[#1]{\wd0}{0.4pt}}
+\newcommand*{\xfill}[1][0pt]{%
+  \cleaders
+    \hbox to 1pt{\hss
+      \raisebox{#1}{\rule{1.2pt}{0.4pt}}%
+      \hss}\hfill}
+%
+\newcommand{\wordSpace}[1]{\phantom{#1}}
+% \phantom{something} <gives the space of "something">
+\newcommand{\wordUline}[1]{\srule{#1}}
+\newcommand{\wordCline}[1]{\srule[0.5ex]{#1}}
+
+%
+%	Underline gaps for forms
+%
+ \newcommand{\piece}{\hskip0pt minus 3pt\hbox to 5mm{\hrulefill}}
+ \newcommand{\nbpiece}{\hbox to .5cm{\hrulefill}}
+
+\makeatletter
+ \newcommand{\build}[2]{\leavevmode
+   \count@=\z@ \toks@={}%
+   \loop\ifnum\count@<\numexpr#1\relax
+     \toks@=\expandafter{\the\toks@#2}%
+     \advance\count@\@ne
+   \repeat
+   \the\toks@}
+\makeatletter
+  
+ \newcommand{\blank}[2][2]{%
+  \build{#1}{\nbpiece}\build{#2-2*#1}{\piece}\build{#1}{\nbpiece}}
+ \newcommand{\blanco}[2][1]{% \blank in [cm] (default=1)
+  \build{#1}{\nbpiece}\build{2*(#2-#1)}{\piece}\build{#1}{\nbpiece}}
+%
+ \newcommand{\form}[1]{%
+             \rule[-1mm]{#1mm}{0.1mm}}%
+ \newcommand{\fillForm}[1]{%
+             \rule[-1mm]{\phantom{#1}}{0.1mm}}%
+ 
+ \newcommand\doOverwrite[2]{\makebox[0mm][l]{#1}#2\ }
+ \newcommand{\filledForm}[2]{%
+             \doOverwrite{\form{#1}}{\makebox[#1mm][c]{#2}}}%
+
+ \newcommand\underlined[2]{\underline{\makebox[#1mm][c]{#2}}}
+

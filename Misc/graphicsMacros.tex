@@ -1,0 +1,39 @@
+%      
+%    Some Graphic Macros
+%
+\message{Graphics,}
+%
+\def\linea{\vskip\baselineskip      % horizontal line
+           \hrule                   % horizontal line
+           \vskip\baselineskip}     % horizontal line
+ \def\nsfline{\hrule
+%  \begin{picture}(440,1)(0,0)
+%  \put(0,0){\line(1,0){400}}
+%  \end{picture} 
+%  \vspace*{0.2in}
+ }
+ \def\nsfitem#1{
+  \begin{center}
+  {\bf\LARGE\cool{#1}}\\*[7mm]
+  \end{center}\hrule
+ }
+ \def\sqbullet{\vrule height .9ex width .8ex depth -.1ex }        % square bullet
+%
+% Frame's definitions
+%
+ \newcommand{\caja}[1]{\vbox{\hrule height1.6pt\hbox{\vrule
+width1.6pt\kern3pt \vbox{\kern3pt{\vbox{\strut#1\strut}}\kern3pt}\kern3pt\vrule width1.6pt}\hrule
+height1.6pt}}
+
+ \newcommand{\cajas}[3]{\vbox{\hrule height#1\hbox{\vrule
+width#1\kern#2\vbox{\kern#2{\vbox{\strut#3\strut}}\kern#2}\kern#2\vrule width#1}\hrule
+height#1}}
+
+% for double arrows
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]

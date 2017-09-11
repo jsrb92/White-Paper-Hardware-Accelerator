@@ -1,0 +1,326 @@
+%
+%	File: TikZneuralNets.sty
+%
+{\typeout{--------------------------->Package TikZneuralNets.sty loading...}}%
+%
+%	Macros, Styles, etc. for BondGraph drawing.
+%
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{TikZneuralNets}[2010/09/09]
+\def\TikZneuralNetsVersion{0.99}
+\message{*[TikZneuralNets]* --------> Loading TikZneuralNets package [Version \TikZneuralNetsVersion]:}
+\message{}
+
+\newboolean{TikZneuralNetsLoaded}
+
+%------------------------------------------------------------------------------------
+%-----------------------------------packages-----------------------------------------
+%------------------------------------------------------------------------------------
+
+\setboolean{TikZneuralNetsLoaded}{false}
+
+\def\xcolorversion{2.00}
+%---> DEFINED:: \newenvironment{environment}[1]{}{}
+%
+\typeout{*[TikZneuralNets]* --------> Loading PGF.sty ...}
+ \RequirePackage[version=latest]{pgf}
+%
+\typeout{*[TikZneuralNets]* --------> Loading TikZ.sty ...}
+ \usepackage{tikz}
+%
+{\typeout{*[TikZneuralNets]* -------> Neural Networks macros definitions ...}}%
+
+%---------------------------------definitions----------------------------------------
+\def\pointspercm{28.45}				% number of points per centimeter
+\def\labelScaleDown{0.25}				% scale factor for label (corresponding to node size)
+\def\labelScaleUp{1/\labelScaleDown}	% inverse of scale factor to recover original size
+%------------------------------------------------------------------------------------
+%
+%	Neural Networks macros
+%	----------------------
+%
+\newcommand{\RBF}[2]{
+		\path[draw,scale=#2] (#1)	.. controls +(1.5mm,0) and +(-1.0mm,0) .. ++(3.0mm, 5.0mm)
+									.. controls +(1.0mm,0) and +(-1.5mm,0) .. ++(3.0mm,-5.0mm);}
+\newcommand{\SGM}[2]{
+		\path[draw,scale=#2] (#1)	.. controls +(3.5mm,0) and +(-3.5mm,0) .. ++(5.0mm, 5.0mm);}
+
+\newcommand{\LIN}[2]{
+		\path[draw,scale=#2] (#1)	-- ++(5.0mm, 5.0mm);}
+
+%
+%	Radial Basis Function (RBF) activation function
+%---------------------
+\newcommand{\cRBF}[2]{
+		\node[coordinate] (C) at (#1) {};
+		\node[coordinate] (LL)  at ($(C)+#2*(-3.0mm,-2.5mm)$) {};
+		\node[coordinate] (CT)  at ($(C)+#2*( 0.0mm, 2.5mm)$) {};
+		\node[coordinate] (LR)  at ($(C)+#2*( 3.0mm,-2.5mm)$) {};
+		\path[draw,scale=#2] (LL) .. controls +(1.5mm,0) and +(-1.0mm,0) .. (CT)
+							  (CT) .. controls +(1.0mm,0) and +(-1.5mm,0) .. (LR);}
+				
+%
+%	Sigmoidal activation function
+%---------------------
+\newcommand{\cSGM}[2]{
+		\node[coordinate] (C) at (#1) {};
+		\node[coordinate] (LL)  at ($(C)+#2*(-2.5mm,-2.5mm)$) {};
+		\node[coordinate] (UR)  at ($(C)+#2*( 2.5mm, 2.5mm)$) {};
+		\path[draw,scale=#2] (LL) .. controls +(3.5mm,0) and +(-3.5mm,0) .. (UR);}
+				
+%
+%	Linear (no) activation function
+%---------------------
+\newcommand{\cLIN}[2]{
+		\node[coordinate] (C) at (#1) {};
+		\node[coordinate] (LL)  at ($(C)+#2*(-2.5mm,-2.5mm)$) {};
+		\node[coordinate] (UR)  at ($(C)+#2*( 2.5mm, 2.5mm)$) {};
+		\path[draw,scale=#2] (LL) -- (UR);}
+				
+%
+%	Saturation activation function
+%---------------------
+\newcommand{\cSAT}[2]{
+		\node[coordinate] (C) at (#1) {};
+		\node[coordinate] (LL)  at ($(C)+#2*(-2.5mm,-2.5mm)$) {};
+		\node[coordinate] (LC)  at ($(C)+#2*(-1.0mm,-2.5mm)$) {};
+		\node[coordinate] (UC)  at ($(C)+#2*( 1.0mm, 2.5mm)$) {};
+		\node[coordinate] (UR)  at ($(C)+#2*( 2.5mm, 2.5mm)$) {};
+		\path[draw,scale=#2] (LL) -- (LC) -- (UC) -- (UR);}
+				
+%
+%	Signum activation function
+%---------------------
+\newcommand{\cSGN}[2]{
+		\node[coordinate] (C) at (#1) {};
+		\node[coordinate] (LL)  at ($(C)+#2*(-2.5mm,-2.5mm)$) {};
+		\node[coordinate] (UR)  at ($(C)+#2*( 2.5mm, 2.5mm)$) {};
+		\path[draw,scale=#2] (LL) -| (C) |- (UR);}
+				
+\newcommand{\activationIcon}[3]{
+	\ifnum #1=0 { \cLIN{#2}{#3} } \fi %	activation function:: linear
+	\ifnum #1=1 { \cSGM{#2}{#3} } \fi %	activation function:: sigmoidal
+	\ifnum #1=2 { \cRBF{#2}{#3} } \fi %	activation function:: radial-basis
+	\ifnum #1=3 { \cSAT{#2}{#3} } \fi %	activation function:: saturation
+	\ifnum #1=4 { \cSGN{#2}{#3} } \fi %	activation function:: sign (hard-limiter)
+}
+
+%
+%	three-layer-perceptron : {\TLP}[2]
+%	----------------------   ---------
+%	parameters:
+%		#1: input  node [coordinate]
+%		#2: output node [coordinate]
+%
+%	Makes a three-layer-perceptron between #1 & #2.
+%
+\newcommand{\TLP}[2]
+{
+% nodes 
+%------------------------------------------------------------------------
+	% input/current state layer
+	\node[inputLayer]	(x_input)  at (#1)				{$x$};	
+	% output layer
+	\node[outputLayer]	(y_output) at (#2)				{$f(x)$};	
+	% hidden layer	
+	\path[draw=none,>=stealth'] (x_input)	 --	node [midway,name=centro]	{$\vdots$}	(y_output);
+	\node[hiddenLayer] (h_u) [above of=centro]		{};
+	\node[hiddenLayer] (h_d) [below of=centro]		{};
+	% activation function
+	\begin{scope}[very thick,yellow]
+		\cSGM{h_u}{1.2};
+		\cSGM{h_d}{1.2};
+	\end{scope}
+
+	\node[draw=purple,inner sep=5pt,thick,rounded corners,rectangle,fit=(h_u) (h_d)] (phi) {};
+
+% connections 
+%-------------------------------------------------------------------
+	\path[axon]		(x_input)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{11}$}	(h_u)
+						 		edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{1n}$}	(h_d)
+					(h_u)		edge [bend left]	node [shift=(-135:3.5mm)]		{$V_{11}$} (y_output)
+					(h_d)		edge [bend right]	node [shift=( 135:4.0mm)]		{$V_{1n}$} (y_output);
+}
+
+%
+%	three-layer-perceptron : {\threeLP}[4]
+%	----------------------   -------------
+%	parameters:
+%		#1: input  node [coordinate]
+%		#2: output node [coordinate]
+%		#3: activation function
+%		#4: draw box around hidden neurons?
+%
+%	Makes a three-layer-perceptron between #1 & #2
+%	with activation function #3.
+%
+\newcommand{\threeLP}[4]
+{
+% nodes 
+%------------------------------------------------------------------------
+	% input/current state layer
+	\node[inputLayer]	(x_input)  at (#1)				{$x$};	
+	% output layer
+	\node[outputLayer]	(y_output) at (#2)				{$f(x)$};	
+	% hidden layer	
+	\path[draw=none,>=stealth'] (x_input)	 --	node [midway,name=centro]	{$\vdots$}	(y_output);
+	\node[hiddenLayer] (h_u) [above of=centro]		{};
+	\node[hiddenLayer] (h_d) [below of=centro]		{};
+	% activation function
+	\begin{scope}[very thick,yellow]
+		\activationIcon{#3}{h_u}{1.2};
+		\activationIcon{#3}{h_d}{1.2};
+	\end{scope}
+
+	\ifnum #4=1 {\node[draw=purple,inner sep=5pt,thick,rounded corners,rectangle,fit=(h_u) (h_d)] {};} \fi
+
+% connections 
+%-------------------------------------------------------------------
+	\path[axon]		(x_input)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{11}$}	(h_u)
+						 		edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{1n}$}	(h_d)
+					(h_u)		edge [bend left]	node [shift=(-135:3.5mm)]		{$V_{11}$} (y_output)
+					(h_d)		edge [bend right]	node [shift=( 135:4.0mm)]		{$V_{1n}$} (y_output);
+}
+
+%
+%	2XnX2 three-layer-perceptron : {\twoNtwoLP}[6]
+%	----------------------------   -------------
+%	parameters:
+%		#1: input  1 node [coordinate]
+%		#2: input  2 node [coordinate]
+%		#3: output 1 node [coordinate]
+%		#4: output 2 node [coordinate]
+%		#5: activation function
+%		#6: draw box around hidden neurons?
+%		#7: draw weights labels of hidden neurons?
+%
+%	Makes a three-layer-perceptron with #1 & #2 as input node
+%	and #3 & #4 as output nodes and with activation function #5.
+%
+\newcommandx{\twoNtwoLP}[7][7=0,6=1,5=1]
+{
+% nodes 
+%------------------------------------------------------------------------
+	% input/current state layer
+	\node[coordinate]	(x1_in)  at (#1)	{};%		{$x_{1}$};	
+	\node[coordinate]	(x2_in)  at (#2)	{};%		{$x_{2}$};	
+	% output layer
+	\node[coordinate]	(y1_out) at (#3)	{};%		{$f_{1}$};	
+	\node[coordinate]	(y2_out) at (#4)	{};%		{$f_{2}$};	
+	% hidden layer	
+%	\node[draw=none] (centro)	at ($.5*(x1_in)+.5*(x2_in)+.5*(y1_out)+.5*(y2_out)/4$) {$\vdots$};
+%	\node[hiddenLayer] (h_u) [above of=centro]		{};
+%	\node[hiddenLayer] (h_d) [below of=centro]		{};
+	\path[draw=none,>=stealth'] (x1_in)	 --	node [midway,name=pu]	{}				(y1_out);
+	\path[draw=none,>=stealth'] (x2_in)	 --	node [midway,name=pd]	{}				(y2_out);
+	\path[draw=none,>=stealth']	(pu)	 --	node [midway,name=centro]	{$\vdots$}	(pd);
+	\node[hiddenLayer,yshift= 10mm] (h_u) at (pu)	{};
+	\node[hiddenLayer,yshift=-10mm] (h_d)	at (pd)	{};
+	% activation function
+	\begin{scope}[very thick,yellow]
+		\activationIcon{#5}{h_u}{1.0};
+		\activationIcon{#5}{h_d}{1.0};
+	\end{scope}
+
+	\ifnum #6=1 {\node[draw=purple,inner sep=5pt,thick,rounded corners,rectangle,fit=(h_u) (h_d)] {};} \fi
+
+% connections 
+%-------------------------------------------------------------------
+	\ifnum #7=1  
+	{
+	\path[axon]		(#1)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{11}$}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{1n}$}	(h_d)
+					(#2)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{21}$}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{2n}$}	(h_d)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{$V_{11}$} (#3)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{$V_{12}$} (#4)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{$V_{n1}$} (#3)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{$V_{n2}$} (#4);
+	}
+	\else
+	{
+	\path[axon]		(#1)	edge [bend left]	node [shift=(-45 :3.5mm)]		{}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{}	(h_d)
+					(#2)	edge [bend left]	node [shift=(-45 :3.5mm)]		{}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{}	(h_d)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{} (#3)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{} (#4)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{} (#3)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{} (#4);
+	}
+	\fi
+}
+
+%-----------------------------------------------------------------
+
+
+%
+%	2XnX1 three-layer-perceptron : {\twoNoneLP}[6]
+%	----------------------------   -------------
+%	parameters:
+%		#1: input  1 node [coordinate]
+%		#2: input  2 node [coordinate]
+%		#3: output 1 node [coordinate]
+%		#4: activation function
+%		#5: draw box around hidden neurons?
+%		#6: draw weights labels of hidden neurons?
+%
+%	Makes a three-layer-perceptron with #1 & #2 as input node
+%	and #3 & #4 as output nodes and with activation function #5.
+%
+\newcommandx{\twoNoneLP}[6][6=0,5=1,4=1]
+{
+% nodes 
+%------------------------------------------------------------------------
+	% input/current state layer
+	\node[coordinate]	(x1_in)  at (#1)	{};%		{$x_{1}$};	
+	\node[coordinate]	(x2_in)  at (#2)	{};%		{$x_{2}$};	
+	% output layer
+	\node[coordinate]	(y1_out) at (#3)	{};%		{$f_{1}$};
+	% hidden layer	
+%	\node[draw=none] (centro)	at ($.5*(x1_in)+.5*(x2_in)+.5*(y1_out)+.5*(y2_out)/4$) {$\vdots$};
+%	\node[hiddenLayer] (h_u) [above of=centro]		{};
+%	\node[hiddenLayer] (h_d) [below of=centro]		{};
+	\path[draw=none,>=stealth'] (x1_in)	 --	node [midway,name=pu]	{}				(y1_out);
+	\path[draw=none,>=stealth'] (x2_in)	 --	node [midway,name=pd]	{}				(y1_out);
+	\path[draw=none,>=stealth']	(pu)	 --	node [midway,name=centro]	{$\vdots$}	(pd);
+	\node[hiddenLayer,yshift= 10mm] (h_u) at (pu)	{};
+	\node[hiddenLayer,yshift=-10mm] (h_d)	at (pd)	{};
+	% activation function
+	\begin{scope}[very thick,yellow]
+		\activationIcon{#5}{h_u}{1.0};
+		\activationIcon{#5}{h_d}{1.0};
+	\end{scope}
+
+	\ifnum #5=1 {\node[draw=purple,inner sep=5pt,thick,rounded corners,rectangle,fit=(h_u) (h_d)] {};} \fi
+
+% connections 
+%-------------------------------------------------------------------
+	\ifnum #6=1  
+	{
+	\path[axon]		(#1)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{11}$}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{1n}$}	(h_d)
+					(#2)	edge [bend left]	node [shift=(-45 :3.5mm)]		{$W_{21}$}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{$W_{2n}$}	(h_d)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{$V_{11}$} (#3)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{$V_{n1}$} (#3);
+	}
+	\else
+	{
+	\path[axon]		(#1)	edge [bend left]	node [shift=(-45 :3.5mm)]		{}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{}	(h_d)
+					(#2)	edge [bend left]	node [shift=(-45 :3.5mm)]		{}	(h_u)
+							edge [bend right]	node [shift=( 45 :4.5mm)]		{}	(h_d)
+					(h_u)	edge [bend left]	node [shift=(-135:3.5mm)]		{} (#3)
+					(h_d)	edge [bend right]	node [shift=( 135:4.0mm)]		{} (#3);
+	}
+	\fi
+}
+
+%-----------------------------------------------------------------
+
+
+%-----------------------------------------------------------------
+\setboolean{TikZneuralNetsLoaded}{true}
+%-----------------------------------------------------------------
+{\typeout{<--------------------------- Package TikZneuralNets.sty loaded!}}

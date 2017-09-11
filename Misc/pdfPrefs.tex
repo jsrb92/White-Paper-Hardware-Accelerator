@@ -1,0 +1,43 @@
+%
+%	Define pdf
+%
+ \message{*[pdfPrefs]* PDF macros.................................[sub defs]}
+ \usepackage{ifpdf}
+
+\ifx\pdfoutput\undefined
+     \pdffalse    % we are not running PDFLaTeX
+     \message{..................PDF is FALSE!}
+\else
+     \pdfoutput=1 % we are     running PDFLaTeX
+     \pdftrue
+     \message{..................PDF is TRUE!}
+\fi
+
+\ifpdf
+    \message{........using PDF........}
+	\usepackage[pdftex]{hyperref}
+	\usepackage[pdftex]{graphicx}
+	\usepackage[pdftex]{geometry}
+	\DeclareGraphicsExtensions{.pdf, .jpg, .tiff, .png, .bmp, .gif, .ps}
+	\DeclareGraphicsRule{*}{mps}{*}{}
+	\pdfinfo {/Author	(Benito R. Fern\'andez) (c) 1990-2010 B.R. Fernandez}
+    \message{........done using PDF!}
+\else
+    \message{........using PS/DVI........}
+	\usepackage[dvipdfm]{hyperref}
+	\usepackage{graphicx}
+	\usepackage[dvipdfm]{geometry}
+	\DeclareGraphicsExtensions{.ps, .eps, .jpg, .pdf}
+	\def\pgfsysdriver{pgfsys-dvipdfm.def}
+    \message{........done using PS/DVI!}
+\fi
+
+%
+ \graphicspath{{pdf/}{figures/pdf/}
+               {tiff/}{figures/tiff/}
+               {jpg/}{figures/jpg/}
+               {gif/}{figures/gif/}
+               {bmp/}{figures/bmp/}
+               {png/}{figures/png/}
+               {eps/}{figures/eps/} }
+% %\graphicspath{{:pdf:}{figures:pdf:}} % for MacOS 9.X

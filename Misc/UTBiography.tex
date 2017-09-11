@@ -1,0 +1,92 @@
+\usepackage{xparse}%
+\usepackage{blindtext}
+\usepackage{morewrites}
+\usepackage{wrapfig}
+\usepackage{xkeyval}%
+\usepackage{Misc/picins}
+
+\newwrite\authorbibfile%
+
+%\AtBeginDocument{%
+%  \immediate\openout\authorbibfile=\jobname.aub%
+%}%
+%
+%\AtEndDocument{%
+%\immediate\closeout\authorbibfile
+%\InputIfFileExists{\jobname.aub}{}{}
+%}%
+
+\makeatletter
+
+\define@key{authorbib}{scale}[1]{%
+\def\AuthorbibKVMacroScale{#1}%
+}
+
+\define@key{authorbib}{wraplines}[10]{%
+\def\AuthorbibKVMacroWraplines{#1}%
+}
+
+\define@key{authorbib}{imagewidth}[4cm]{%
+\def\AuthorbibKVMacroImagewidth{#1}%
+}
+
+\define@key{authorbib}{overhang}[10pt]{%
+\def\AuthorbibKVMacroOverhang{#1}%
+}
+
+\define@key{authorbib}{imagepos}[l]{%
+\def\AuthorbibKVMacroImagepos{#1}%
+}
+
+\makeatother
+
+\presetkeys{authorbib}{imagepos=l,imagewidth=4cm,wraplines=15,overhang=20pt}{}
+
+\newlength{\AuthorbibTopSkip}
+\setlength{\AuthorbibTopSkip}{\baselineskip}
+\newlength{\AuthorbibBottomSkip}
+\setlength{\AuthorbibBottomSkip}{\baselineskip}
+
+
+\NewDocumentCommand{\authorbibliography}{+o+m+m+m}{%
+  \IfNoValueTF{#1}{%
+  }{%
+    \setkeys{authorbib}{#1}%
+    \immediate\write\authorbibfile{%
+      \string\begin{wrapfigure}[\AuthorbibKVMacroWraplines]{\AuthorbibKVMacroImagepos}[\AuthorbibKVMacroOverhang]{\AuthorbibKVMacroImagewidth}^^J
+        \string\includegraphics[scale=\AuthorbibKVMacroScale]{#2}^^J
+        \string\end{wrapfigure}^^J
+    }%
+  }%
+  \IfNoValueTF{#3}{%
+    \typeout{Warning: No author name}%
+  }{%
+    \immediate\write\authorbibfile{%
+      \unexpanded{\vspace{\AuthorbibTopSkip}}^^J
+      \string\noindent\relax
+      \unexpanded{\textbf{#3}\par}^^J
+      \string\noindent\relax
+      \unexpanded{#4}^^J%
+      \unexpanded{\vspace{\AuthorbibBottomSkip}}^^J
+      }%
+  }%
+}%
+
+\newcommand{\biography}[3]{
+  \begin{wrapfigure}{l}{25mm} 
+    \includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{#1}
+  \end{wrapfigure}
+  \vspace{2em}
+  \noindent\textbf{\cool{\small #2}}
+  \small #3
+}
+
+\newcommand{\biographyFor}[3]{
+\parpic{\includegraphics[width=1in,clip,keepaspectratio]{#1}}
+\vspace{2em}
+\noindent {\bf\small #2}
+\small #3
+}
+
+
+

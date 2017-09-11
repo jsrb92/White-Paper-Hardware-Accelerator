@@ -1,0 +1,147 @@
+%
+%    Macros for Partial Derivatives and other Math Operators
+%
+ \message{*[ProgrammingMacros]* Programming macros.............................[sub defs]}
+%
+\message{Listings with ProcNames,}
+%
+ \usepackage[procnames]{listings}
+ \usepackage{color}
+ \usepackage{caption}
+%
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% 
+ \def\Python{{\color{azulOscuro}\cool{Python}}\xspace}
+ \def\SciPy{{\color{rojoOscuro}\cool{SciPy}}\xspace}
+ \def\IPython{{\color{cyan}\cool{IPython}}\xspace}
+ \def\Matplotlib{{\color{morado}\cool{Matplotlib}}\xspace}
+ \def\NumPy{{\color{verdeOscuro}\cool{NumPy}}\xspace}
+
+%--------------------------------------------------------
+%--------------------------------------------------------
+% Programming style for highlighting code: Python
+%--------------------------------------------------------
+%--------------------------------------------------------
+% Custom colors
+ \definecolor{keywords-color}{RGB}{0,0,113}       % dark blue
+ \definecolor{comments-color}{RGB}{255,0,90}      % red
+ \definecolor{strings-color}{RGB}{0,150,0}        % green
+ \definecolor{identifiers-color}{RGB}{160,0,0}    % dark red
+ \definecolor{emphasis-color}{rgb}{0.6,0,0}       % deep red
+ \definecolor{codeTitle-color}{rgb}{0.6,0,0}      % burnt orange: burntOrange!90
+ \definecolor{background-color}{rgb}{1,1,1}       % white
+ \definecolor{codeBox-color}{rgb}{0.95,0.95,0.95} % very light gray
+% Custom styles for boxes & title
+\tikzstyle{sourceCodeBox} = [ draw=blue, fill=codeBox-color, ultra thick,
+                              rectangle, rounded corners, inner sep=5mm ]
+
+\tikzstyle{sourceCodeTitle} = [ fill=burntOrange!90, text=white, very thick,
+                                rectangle, rounded corners ]
+%
+\message{Box Environment,}
+%
+% font styles: \normalfont\em\rmfamily\sffamily\\ttfamily\upshape\itshape\slshape
+%              \scshape\bfseries\mdseries\lfseries
+\newcommand\pythonStyle[1][\scriptsize]{\lstset{%
+        language=Python,
+% font sizes: \tiny\scriptsize\footnotesize\small\normalsize\large\Large\LARGE\huge\Huge
+  		backgroundcolor=\color{background-color},  % choose the background color
+        basicstyle=\ttfamily#1, 			       % font family and size
+    	otherkeywords={self},                      % Add keywords here
+        keywordstyle=\color{keywords-color},       % keywords color	
+        commentstyle=\color{comments-color},       % comments color
+        stringstyle=\color{strings-color},         % strings color
+        identifierstyle=\color{identifiers-color}, % identifiers color
+        procnamekeys={def,class}
+    	emph={MyClass,__init__},             % Custom highlighting
+    	emphstyle=\color{emphasis-color},    	     % Custom highlighting style
+        escapeinside={(*@}{@*)},
+        escapeinside={\%*}{*)},              % if you want to add LaTeX within your code
+        %numbers=left,
+        breaklines=true,
+        breakatwhitespace=true,
+        showspaces=false,
+        showstringspaces=false,
+        frame=shadowbox,
+        fill=white,
+        frameround=rrrt,
+        linewidth=.80\linewidth,
+        rulecolor=\color{magenta},
+        rulesepcolor=\color{morado!20}
+    }}%
+
+% Define Caption for code listings
+\DeclareCaptionFont{white}{ \color{white} }
+\DeclareCaptionFormat{listing}{
+  \colorbox[cmyk]{0.43, 0.35, 0.35,0.01 }{
+    \noindent\parbox{.80\linewidth}{\hspace{15pt}#1#2#3}
+  }
+}
+
+\captionsetup[lstlisting]{ format=listing, labelfont=white, textfont=white, singlelinecheck=false, margin=0mm, font={bf,footnotesize} }
+
+
+%
+\message{Python,}
+%
+% Python for inline
+\newcommand\pythonInLine[1]{{\pythonStyle[\small]\lstinline!#1!}}
+
+% Python for external files
+\newcommand\pythonExternal[2][]{{
+\pythonStyle
+\lstinputlisting[#1]{#2}}}
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonStyle
+\lstset{#2}
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Do similar to multiple pages tables! For long code!!!!
+%\newcommand{pythonCode}[1]{
+\makeatletter
+\lstnewenvironment{pythonCode}[1][]{%
+    \def\pythonCodeTitle{#1}%
+    \pythonStyle%
+    \setbox\@tempboxa=\hbox\bgroup\color@setgroup
+}%
+{%
+    \color@endgroup\egroup
+    \begin{tikzpicture}
+        \node[sourceCodeBox] (box)
+            % Makebox is needed to take the frame added by listings into account
+            {\makebox[.90\linewidth][l]{\box\@tempboxa}};
+        \node[sourceCodeTitle] at (box.north west) {\pythonCodeTitle};
+%        \node[sourceCodeTitle] at ($(box.north west)+(5mm,0)$) {\pythonCodeTitle};
+    \end{tikzpicture}
+}
+%--------------------------------------------------------
+%--------------------------------------------------------
+%--------------------------------------------------------
+%
+\message{Swift,}
+%
+
+%
+\message{MatLab,}
+%
+
+
+%
+\message{Stickies.}
+%
+
+ \newcommand\stickie[1]{
+   \tikz\node[overlay,fill=yellow!50,draw,thick, 
+                      minimum height=2cm, minimum width=3cm,rotate=30,
+                      decorate, decoration={random steps,
+                      segment length=3pt,amplitude=1pt}]
+                   at (0.9\textwidth,20mm){#1};
+ }
+

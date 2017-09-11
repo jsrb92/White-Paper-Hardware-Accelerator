@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                 %
+%                       Benito R. Fernandez                       %
+%     benito@austin.utexas.edu    benito.fernandez@gmail.com      %
+%     [office] +1 (512) 471-7852  [mobile] +1 (512) 567-8230      %
+%                                                                 %
+%                The University of Texas at Austin                %
+%                Mechanical Engineering Department                %
+%                  1 University Station, C2200                    %
+%                    Austin, Texas 78712-0292.                    %
+%                                                                 %
+%               (c) 1990-2013 Benito R. Fernandez                 %
+%                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  File: ``definiciones.tex''
+%
+ \NeedsTeXFormat{LaTeX2e}
+ %\ProvidesPackage{definiciones}[2013.03.12]
+%
+% Last Modified: March 03, 2013 @ 17:32
+%
+%----------------------------------------------------------------------------%        
+ \typeout{    [*************************************************************]}
+ \typeout{    [******************** Benito R. Fernandez ********************]}
+ \typeout{    [************* The University of Texas at Austin *************]}
+ \typeout{    [****************** begin: definiciones.tex ******************]}
+ \typeout{    [************ Last Modified: March 03, 2013 @ 17:32 **********]}
+ \typeout{    [*************************************************************]}
+%----------------------------------------------------------------------------%        
+%
+%	Define pdf
+%	----------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <pdfPrefs> .......}
+ \input{Misc/pdfPrefs}					% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <pdfPrefs> loaded.}
+%----------------------------------------
+
+%
+%	Packages
+%	--------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <paquetes> .......}
+ \input{Misc/paquetes}					% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <paquetes> loaded.}
+%----------------------------------------
+
+ \floatstyle{plain} 
+ \restylefloat{table} 
+ \restylefloat{figure} 
+ \floatplacement{table}{h} 
+ \floatplacement{figure}{h} 
+
+%
+% Define a new 'BRF' style for the package that will use a smaller font.
+\makeatletter
+\def\url@BRFstyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+
+\hypersetup{
+    pdftitle={Document created by BRF @ UT Austin},	% title
+    pdfkeywords={Optimally-Robust Adaptive Control, Applied Intelligence (Neural Nets, Fuzzy Logic, Genetic Algorithms, Artificial Immune Systems), Mechatronics, Bond-Graphs, Fault Diagnostics and Prognosis, eXtreme Devices},	% list of keywords
+    pdfauthor={Benito R. Fern\'andez},               % author
+    pdfsubject={Exploring Wonderful Ideas ...},      % subject of the document
+ %  bookmarks=true,	                     % show bookmarks bar?
+    unicode=false,                      % non-Latin characters in Acrobat's bookmarks
+    pdftoolbar=true,                    % show Acrobat's toolbar?
+    pdfmenubar=true,                    % show Acrobat's menu?
+    pdffitwindow=true,                  % page fit to window when opened
+    pdfnewwindow=true,                  % links in new window
+    colorlinks=true,                    % false: boxed links; true: colored links
+    linkcolor=red,                      % color of internal links
+    citecolor=green,                    % color of links to bibliography
+    filecolor=magenta,                  % color of file links
+    urlcolor=purple                     % color of external links
+}
+
+ \newcommand\email{\begingroup \urlstyle{tt}\Url}
+ \urldef{\UTweb}\url{www.utexas.edu}
+ \urldef{\BRFemailAddress}{\email}{benito@mail.utexas.edu}
+ \def\BRFemail{\href{mailto:benito@mail.utexas.edu}{benito@mail.utexas.edu}}
+%% Now actually use the newly defined style.
+ \urlstyle{BRF}
+%\usepackage[small,normal,bf,up]{caption}
+%\renewcommand{\captionfont}{\small\itshape}%		makes caption font italic as default
+ \def\doubleLine{\vspace{5mm}\hrule\vspace{0.5mm}\hrule\vspace{1mm}} 
+ \newcommand{\NEWsection}[1]{\newpage ~\vspace{-5mm}\section{#1}}
+ \newcommand{\GETsolution}[1]{\doubleLine\input{#1}}
+%
+%    MacStyle Macros
+%	 ---------------
+\message{MacStyle->}
+%%% \input option_keys
+\message{,}
+% .....FDC interline spacing macros
+%
+%\def\doublespace{
+%   \baselineskip = 26.4 pt plus .24 pt
+%   \parskip = 7.2 pt plus 2.4 pt minus 1.2 pt
+%   }
+%\def\spaceandhalf{
+%   \baselineskip = 19.8 pt plus .18 pt
+%   \parskip = 5.4 pt plus 2.16 pt minus .9 pt
+%   }
+%\def\singlespace{
+%   \baselineskip = 13.2 pt plus .12 pt
+%   \parskip = 3.6 pt plus 1.2 pt minus .6 pt
+%   }
+% 
+%	Cool Fonts & Colors
+%   -------------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <fontsAndColors> .......}
+ \input{Misc/fontsAndColors}				% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <fontsAndColors> loaded.}
+%----------------------------------------
+%
+% Define [default] spacing and margins
+%
+% Use '\input{margenes}' for my standard margins
+%
+% \textwidth		= 6.25 in
+% \textheight		= 9.00 in
+% \oddsidemargin	= 0.00 in
+% \evensidemargin	= 0.00 in
+% \topmargin		= 0.00 in
+% \headheight		= 0.00 in
+% \headsep			= 0.00 in
+% \parskip			= 0.20 in
+% \parindent		= 0.25 in
+
+%  registered (circle R) mark needed for Kevlar, Teflon, etc...
+\def\registered{{\ooalign                                   %  registered
+  {\hfil\kern+.05em\raise.12ex                              %  registered
+\hbox{\tiny R}\hfil\crcr{\footnotesize\mathhexbox20D}}}}    %  registered
+%
+%   Short-hand commands and macros
+%	------------------------------
+ \message{ShortHand,}
+%
+% \newcommand{\s}      {\section}
+% \newcommand{\sus}    {\subsection}
+% \newcommand{\susus}  {\subsubsection}
+% \newcommand{\para}   {\paragraph}
+% \newcommand{\subpar} {\subparagraph}
+%
+ \newcommand{\centre} {\centerline}
+ \newcommand{\un}     {\underline}
+%\newcommand{\cen}    {\centerline}
+% \newcommand{\lx}     {\leftline}
+ \newcommand{\bs}     {\TrueMath{\backslash}}
+% \newcommand{\nin}    {\noindent}
+ \newcommand{\hd}[1]  {\indent {\bf #1}}
+%\newcommand{\pf}[1]  {\indent {\bf #1}\quad}
+ \newcommand{\chd}[1] {\centerline{\sl #1}}
+ \newcommand{\QD}     {\hfill {\sl Q.E.D.}}
+%
+%    Macros for References, Authoring, etc.
+%
+ \message{References,}
+ \newcommand{\figRef}[1]{Fig.~\ref{#1}}
+ \newcommand{\eqRef}[1]{Eq.~(\ref{#1})}
+%
+% Frame's definitions
+%
+ \newcommand{\caja}[1]{\vbox{\hrule height1.6pt\hbox{\vrule
+width1.6pt\kern3pt \vbox{\kern3pt{\vbox{\strut#1\strut}}\kern3pt}\kern3pt\vrule width1.6pt}\hrule
+height1.6pt}}
+
+ \newcommand{\cajas}[3]{\vbox{\hrule height#1\hbox{\vrule
+width#1\kern#2\vbox{\kern#2{\vbox{\strut#3\strut}}\kern#2}\kern#2\vrule width#1}\hrule
+height#1}}
+%
+ \newcommand{\cmdName}[1]{{\texttt{{\bs}#1}}}
+ \newcommand{\keyword}[1]{{\bf #1}}
+ \newcommand{\varname}[1]{{\em #1}}
+
+%
+%	Define List Of Things: {Graphs, Code, Definitions}
+%
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <documentDefs> .....}
+ \input{Misc/documentDefs}			% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ..... <documentDefs> loaded.}
+%----------------------------------------
+%
+%	Names Definitions: UT, Companies, People, etc.
+%
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <nameSpaces> .......}
+ \input{Misc/nameSpaces}				% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <nameSpaces> loaded.}
+%----------------------------------------
+%      
+%    Some Graphic Macros
+%
+\message{Graphics,}
+%
+\def\linea{\vskip\baselineskip      % horizontal line
+           \hrule                   % horizontal line
+           \vskip\baselineskip}     % horizontal line
+ \def\nsfline{\hrule
+%  \begin{picture}(440,1)(0,0)
+%  \put(0,0){\line(1,0){400}}
+%  \end{picture} 
+%  \vspace*{0.2in}
+ }
+ \def\nsfitem#1{
+  \begin{center}
+  {\bf\LARGE\cool{#1}}\\*[7mm]
+  \end{center}\hrule
+ }
+
+%
+%   Picture Macro
+%	-------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <pictureMacros> .......}
+ \input{Misc/pictureMacros}				% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <pictureMacros> loaded.}
+%----------------------------------------
+
+ \newcommand\backGround[1]{%
+    \centering\inputgraphics[width=\paperwidth,height=\paperheight]{#1}
+                          } %
+
+%
+%    Macros for Partial Derivatives and other Math Operators
+%
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <MathMacros> .......}
+ \input{Misc/MathMacros}					% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <MathMacros> loaded.}
+%----------------------------------------
+
+%
+%   Symbols, etc.
+%	-------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <simbolos> .......}
+ \input{Misc/simbolos}					% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <---------------  ...... <simbolos> loaded.}
+%----------------------------------------
+
+%
+%	System Definitions
+%	------------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <dynamicSystemDefs> .......}
+ \input{Misc/dynamicSystemdDefs}			% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <dynamicSystemDefs> loaded.}
+%----------------------------------------
+
+%
+%   Time-Line, etc.
+%	---------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <TikZtimeline> ........}
+ \input{Misc/TikZtimeline}				% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <---------------  ....... <TikZtimeline> loaded.}
+%---------------------------------------- 
+
+%
+%	Programming Listings Definitions
+%	--------------------------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <ProgrammingMacros> .......}
+%%% \input{programming}			    % <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <ProgrammingMacros> loaded.}
+%---------------------------------------- 
+%
+%	Slides Definitions
+%	-------------------
+%----------------------------------------
+% \typeout{[[definiciones]] ---------------> loading <slidesDefs> ...............}
+% \input{slidesDefs}		           % <<----------------------------------- [sub]
+% \typeout{[[definiciones]] <--------------- ....... <slidesDefs> loaded.}
+%---------------------------------------- 
+%
+%
+%	UT Definitions
+%	--------------
+%----------------------------------------
+ \typeout{[[definiciones]] ---------------> loading <UTdefinitions> .......}
+ \input{Misc/UTdefinitions}			% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <UTdefinitions> loaded.}
+%---------------------------------------- 
+\typeout{[[definiciones]] ---------------> loading <Name Definitions> .......}
+\def\HxC{{\azulOscuro{\cool{H}$_{\AsIs{\small\cool{X}}}$\cool{C}}}\xspace}
+\def\hXE{{\azulOscuro{\cool{h}$_{\AsIs{\small\cool{X}}}\mathcal{E}$}}\xspace}
+\def\NI{\color{azul}\cool{National Instruments}\xspace}
+\def\Intel{\color{azul}\cool{Intel}\xspace}
+\def\vt#1{\tikz[baseline=-0.5ex]{\node[rotate=90] at (0,0) {\cool{#1}};}}
+\def\CPS{{\rojoOscuro{\cool{CPS}}}\xspace}
+\def\infinikey{\cool{\color{burntOrange}$\infty$-key}\xspace}
+
+\def\SBIR{\azulOscuro{\cool{SBIR}}\xspace}
+\def\TAMOSI{\verdeOscuro{\cool{TAMOSI}}\xspace}
+\def\SPAT{\azulOscuro{\cool{SPAT}}\xspace}
+\def\SPATAPS{\cool{\rojoOscuro{Salute}\azulOscuro{Physique}\verdeOscuro{Aesthetica}\azulOscuro{Technologie}}\xspace}
+ \typeout{[[definiciones]] <--------------- ....... <Name Definitions> loaded.}
+\typeout{[[definiciones]] ---------------> loading <Other Stuff by Juan> .......}
+\input{Misc/margenes}
+ \usepackage{wrapfig}
+ \usepackage{fancyhdr}
+ \input{Misc/UTBiography.tex}
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+
+ \typeout{[[definiciones]] <--------------- ....... <Other Stuff by Juan> loaded.}
+\hypersetup{%
+  colorlinks = true,
+  linkcolor  = black
+}
+ \typeout{[[definiciones]] ---------------> loading <matlab-prettifier> .......}
+ \usepackage{matlab-prettifier}			% <<----------------------------------- [sub]
+ \typeout{[[definiciones]] <--------------- ....... <matlab-prettifier> loaded.}
+
+
+
+ \typeout{[[definiciones]] <--------------- END!}
+%
+ \typeout{}
+ \typeout{    [*************************************************************]}
+ \typeout{    [******************* end: definiciones.tex *******************]}
+ \typeout{    [*************************************************************]}
+%
+% End of ``definiciones.tex''
+%
+
+%----------------------------------------------------------------------------%        
+ \typeout{    [*************************************************************]}
+ \typeout{    [*************************************************************]}
+ \typeout{    [****.....................................................****]}
+ \typeout{    [****..****...***....****..*...*.*...*.*****.*...*.*****..****]}
+ \typeout{    [****..*...*.*...*..*......*...*.**.**.*.....**..*...*....****]}
+ \typeout{    [****..*...*.*...*..*......*...*.*.*.*.*.....**..*...*....****]}
+ \typeout{    [****..*...*.*...*..*......*...*.*...*.****..*.*.*...*....****]}
+ \typeout{    [****..*...*.*...*..*......*...*.*...*.*.....*..**...*....****]}
+ \typeout{    [****..*...*.*...*..*......*...*.*...*.*.....*..**...*....****]}
+ \typeout{    [****..****...***....****...***..*...*.*****.*...*...*....****]}
+ \typeout{    [****.....................................................****]}
+ \typeout{    [*************************************************************]}
+ \typeout{    [**** (c) 2010-2012 Benito R. Fernandez, Austin, TX, USA. ****]}
+ \typeout{    [*************************************************************]}
+%----------------------------------------------------------------------------%

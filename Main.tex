@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\input{Misc/definiciones}
+%
+
+%	Margins, etc.
+%-----------------------------------------
+%
+\renewcommand {\baselinestretch} {1}
+
+\setlength{\hoffset}       {0.0mm}
+\setlength{\oddsidemargin} {0.0mm} % Margins is 1" + \hoffset + \oddsidemargin
+\setlength{\evensidemargin}{0.0mm} % Margins is 1" + \hoffset + \evensidemargin
+\setlength{\marginparwidth}{0.0mm} % for Margin Notes
+\setlength{\marginparsep}  {0.0mm} % separation between Margin Notes and Body
+
+\setlength{\voffset}       {-12.5mm}
+\setlength{\topmargin}     {2.5mm} % Margins is 1" + \voffset + \topmargin (Header starts)
+\setlength{\headheight}    {7.5mm} % Header height (after 1" + \voffset + \topmargin)
+\setlength{\headsep}       {7.5mm} % separation between header and Body
+\setlength{\topskip}       {2.5mm} % separation to first line of text.
+
+\setlength{\textheight}    {210.0mm} % Body Height %{8.625truein}%{219.075mm}
+ 		% After 1" + \voffset + \topmargin + \headheight + \headsep
+
+\setlength{\textwidth}     {159.0mm} % Body Width %{6.255truein}%{158.877mm}
+ 		% After 1" + \hoffset + \sidemargin + \marginparsep + \marginparwidth
+
+\setlength{\footskip}      {7.5mm} % separation between Body and Footer (bottom)
+
+\def\newVolume#1{
+ 	\pagenumbering{arabic}
+	\setcounter{page}{0}
+}
+%
+%	------- Title -------
+%
+\author{
+    Benito R. Fern\'andez, Ph.D.\\
+    Juan Rincon
+    }
+\title{\huge{Hybrid eXtreme Computer \cool{HxC}}\\
+Hardware Accelerator}
+\date{September 11, 2017}
+%
+%	------- Begin Document -------
+%
+\begin{document}
+	\maketitle
+    \section*{Summary}
+      Deep learning, machine learning and Artificial Intelligence (\cool{AI}) has picked up in the past 10 years. 
+    \section*{Intellectual Merit}
+    \section*{Broader Impacts}
+    
+    
+            
+\end{document}
+
+%     \begin{figure}[H]
+% 	    \centering
+% 	    \includegraphics[scale=1]{Figures/Filename}
+%       \caption[Figure title]
+% 	    {figure label}
+% 	    \label{fig:reference}
+%     \end{figure}
+
+% \begin{equation}
+% 	\label{eq:reference}
+%   a=1+2
+% \end{equation}
+%\lstinputlisting[style=Matlab-editor]{Code/rk4fixed.m}

@@ -1,0 +1,87 @@
+%
+%     Picture Macros
+%
+ \message{*[pictureMacros]* Pictures macros.................................[sub defs]}
+
+ \def\picture #1 by #2 (#3){
+  \vbox to #2{
+     \hrule width #1 height 0pt depth 0pt
+     \vfill
+     \special{picture #3}}
+}
+%
+%    Scaled  Picture Macro
+%
+%\def\scaledpicture #1 by #2 (#3 scaled #4){
+%  {
+%   \dimen0=#1 \dimen1=#2
+%   \multiply\dimen0 by #4 \divide\dimen0 by 1000 
+%   \multiply\dimen1 by #4 \divide\dimen1 by 1000 
+%   \picture \dimen0 by \dimen1 (#3)
+%  }
+%}
+\def\scaledpicture #1 by #2 (#3 scaled #4){
+   \ancho=#1 \alto=#2 \escala=#4
+   \multiply\ancho by \escala \divide\ancho by 1000  
+   \multiply\alto  by \escala \divide\alto  by 1000 
+%   File:``#3'', scaled is \number\ancho\ by \number\alto\ \\
+   \includegraphics[width=\number\ancho in, height=\number\alto in]{#3}}
+   
+ \newcount\ancho  \newcount\alto   \newcount\escala 
+ \def\myScaledpicture #1 by #2 (#3 scaled #4){
+  {
+   \dimen0=#1 \dimen1=#2
+%   File:``#3'', scaled is \number\dimen0 \ by \number\dimen1 \ \\
+   \multiply\dimen0 by #4 \divide\dimen0 by 1000 
+   \multiply\dimen1 by #4 \divide\dimen1 by 1000
+%   File:``#3'', scaled is \number\dimen0 \ by \number\dimen1 \ \\
+   \includegraphics[width=\dimen0 in, height=\dimen1 in]{#3}
+  }
+}
+% \newcommand{\myScaledpicture}[4]{
+%  {
+%   \newcount\ancho \newcount\alto 
+%   \ancho=#1 \alto=#2
+%   \multiply\ancho by #4 \divide\ancho by 1000 
+%   \multiply\alto  by #4 \divide\alto  by 1000 
+%   \includegraphics[widht=\number\ancho][height=\number\alto]{#3}
+%  }
+%}
+
+%
+%     Graphics Macros
+%
+ \message{Graphics,}
+ \usepackage{Misc/bez123}
+
+%
+\def\linea{\vskip\baselineskip      % horizontal line
+           \hrule                   % horizontal line
+           \vskip\baselineskip}     % horizontal line
+ \def\nsfline{\hrule
+%  \begin{picture}(440,1)(0,0)
+%  \put(0,0){\line(1,0){400}}
+%  \end{picture} 
+%  \vspace*{0.2in}
+ }
+ 
+\def\myCircle(#1,#2)[#3]{ % (#1=xCenter, #2=yCenter) [#3=scale-radius]
+	\put(#1,#2){
+		\setlength{\unitlength}{#3}
+		\cbezier(-5, 0)(-5, 2.761423749)(-2.761423749, 5)( 0, 5) % NW quadrant
+		\cbezier( 0, 5)( 2.761423749, 5)( 5, 2.761423749)( 5, 0) % NE quadrant
+		\cbezier( 5, 0)( 5,-2.761423749)( 2.761423749,-5)( 0,-5) % SE quadrant
+		\cbezier( 0,-5)(-2.761423749,-5)(-5,-2.761423749)(-5, 0) % SW quadrant
+		}
+	}
+
+\def\myOval(#1,#2){ % #1=radius, #2=linethinckness
+	  	\linethickness{#2}
+		\qbezier( #1,   0)( #1,  #1)(  0,  #1)
+	  	\qbezier(  0,  #1)(-#1,  #1)(-#1,   0)
+	  	\qbezier(-#1,   0)(-#1, -#1)(  0, -#1)
+	  	\qbezier(  0, -#1)( #1, -#1)( #1,   0)
+}
+
+ \def\sqbullet{\vrule height .9ex width .8ex depth -.1ex }        % square bullet
+

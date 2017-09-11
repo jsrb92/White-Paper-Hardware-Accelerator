@@ -1,0 +1,31 @@
+%  registered (circle R) mark needed for Kevlar, Teflon, etc...
+\def\registered{{\ooalign                                   %  registered
+  {\hfil\kern+.05em\raise.12ex                              %  registered
+\hbox{\tiny R}\hfil\crcr{\footnotesize\mathhexbox20D}}}}    %  registered
+%
+%    Short-hand commands and macros
+%
+ \message{ShortHand,}
+%
+% \newcommand{\s}      {\section}
+% \newcommand{\sus}    {\subsection}
+% \newcommand{\susus}  {\subsubsection}
+% \newcommand{\para}   {\paragraph}
+% \newcommand{\subpar} {\subparagraph}
+%
+ \newcommand{\centre} {\centerline}
+ \newcommand{\un}     {\underline}
+%\newcommand{\cen}    {\centerline}
+ \newcommand{\lx}     {\leftline}
+ \newcommand{\bs}     {\TrueMath{\backslash}}
+ \newcommand{\nin}    {\noindent}
+ \newcommand{\hd}[1]  {\indent {\bf #1}}
+%\newcommand{\pf}[1]  {\indent {\bf #1}\quad}
+ \newcommand{\chd}[1] {\centerline{\sl #1}}
+ \newcommand{\QD}     {\quad {\sl Q.E.D.}}
+%
+%    Macros for References, Authoring, etc.
+%
+ \message{References,}
+ \newcommand{\figRef}[1]{Fig.~\ref{#1}}
+ \newcommand{\eqRef}[1]{Eq.~(\ref{#1})}

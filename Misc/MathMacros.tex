@@ -1,0 +1,279 @@
+%
+%    Macros for Partial Derivatives and other Math Operators
+%
+ \message{*[MathMacros]* Mathematics macros.................................[sub defs]}
+%
+%   True-Math Macros
+%	----------------
+\message{TrueMath,}
+%
+\newcommand{\TrueMath}    [1]{\mbox{$#1$}}                  %TrueMath
+\newcommand{\TM}          [1]{\mbox{$#1$}}                  %TrueMath
+%
+\newcommand{\TrueBoldMath}[1]{\mbox{\boldmath$#1$}}         %TrueBoldMath
+\newcommand{\TBM}         [1]{\mbox{\boldmath$#1$}}         %TrueBoldMath
+%
+\newcommand{\AsIs}        [1]{\mbox {#1}}                   %AsIs
+\newcommand{\typed}       [1]{\mbox \texttt{#1}}            %typed
+
+%
+% Generic Commands Bold, Normal, etc.
+%
+ \newcommand{\mathbold}[1]{\mbox{\boldmath $\bf#1$}}                 % mathbold
+ \newcommand{\mb}[1]{\mbox{$\mathbb{#1}$}}
+ \newcommand{\bm}[1]{\mbox{\boldmath $#1$}}
+ \newcommand{\bb}[1]{\mbox{\bf #1}}
+ \newcommand{\nn}[1]{\mbox{#1}}
+ \newcommand{\command}[1]{\mbox{$\backslash$#1}}
+ \newcommand{\cc}[1]{\mbox{$\backslash$#1}}
+%
+ \newcommand{\nbar}[1]{\mbox{$\bar{\nn{#1}}$}}
+ \newcommand{\bbar}[1]{\mbox{$\bar{\nb{#1}}$}}
+%\newcommand{\set}[1]{\bm{\cal #1}}
+%
+%    Macros for cartesian units
+%
+ \def\iunit{\TrueMath{{\bf\rm\hat\i}}}
+ \def\junit{\TrueMath{{\bf\rm\hat j}}}
+ \def\kunit{\TrueMath{{\bf\rm\hat k}}}
+
+ \DeclareMathOperator*{\sigmoid}{{\rm sgm}}
+ \DeclareMathOperator*{\sat}{{\rm sat}}
+ \DeclareMathOperator*{\imply}{\Rightarrow}
+ \DeclareMathOperator*{\derive}{\vdash}
+ \DeclareMathOperator*{\OR}{\vee}
+ \DeclareMathOperator*{\AND}{\wedge}
+ 
+ \newcommand{\tuple}[1]{\langle #1     \rangle}
+ \newcommand{\pair} [2]{\langle #1, #2 \rangle}
+
+ \newtheorem{theorem}{Theorem}[section]
+ \newtheorem{lemma}[theorem]{Lemma}
+ \newtheorem{problem}[theorem]{Problem}
+ \newtheorem{corollary}[theorem]{Corollary}
+ \newtheorem{proposition}[theorem]{Proposition}
+ \newtheorem{property}[theorem]{Property}
+ \newtheorem{conjecture}[theorem]{Conjecture}
+ \newtheorem{definition}[theorem]{Definition}
+
+ \newcommand{\Proof}{\noindent{\cool{Proof}.\ }}
+ \newcommand{\EndProof}{{\hspace{0.25mm}\dotfill$\Box$\vspace{0.25mm}}}
+
+ \newtheorem{Ejemplo}[theorem]{Example}
+ \newenvironment{ejemplo}
+                {\begin{Ejemplo}\hspace{0.25mm}\rm}
+                {\hspace{0.25mm}\dotfill$\Box$\end{Ejemplo}}
+
+ \def\ROM{{\tiny ROM}\xspace}
+ \def\Half{\TrueMath{\displaystyle{1\over2}}}
+ \def\half{\TrueMath{\leavevmode\kern.1em \raise.5ex
+                     \hbox{\the\scriptfont0 1}
+                     \kern-.1em / \kern-.15em\lower.25ex
+                     \hbox{\the\scriptfont0 2}
+           }         }
+%
+ \def\dots{\TrueMath{\ldots}}
+ \renewcommand{\tfrac}[2]{{\textstyle {#1 \over #2}}}	% Text-Style    fraction
+ \renewcommand{\dfrac}[2]{{\displaystyle {#1 \over #2}}}	% Display-Style fraction
+ \def\ds#1{\displaystyle #1}
+ \def\frak#1#2{\frac{\ds{#1}}{\ds{#2}}}
+%
+%--------------------
+ \message{Equations,}
+%
+ \newcommand{\eq} [1]{\begin{equation}#1\end{equation}}           %Equation short cut
+ \newcommand{\eql}[2]{\begin{equation}#2\label{#1}\end{equation}} %Equation short cut
+%
+ \def\myDer(#1/#2){\TrueMath{\frac{\mathrm{d}#1}{\mathrm{d}#2}}}
+ \def\myPar(#1/#2){\TrueMath{\frac{\partial  #1}{\partial  #2}}}
+ \newcommand{\Der}[1]{\TrueMath{\frac{\displaystyle d#1}{\displaystyle dt}}}
+ \newcommand{\DER}[2]{\TrueMath{\frac{\displaystyle d#1}{\displaystyle d#2}}}
+ \def\der  #1     {\TrueMath{\frac{\displaystyle}{\displaystyle dt} \left\{#1\right\}}}
+ \def\ders #1#2   {\TrueMath{\frac{\displaystyle d^{#1}\left\{#2\right\}}{\displaystyle {dt^{#1}}}}}
+ \def\pdr  #1#2   {\TrueMath{\frac{\displaystyle\partial #1}{\displaystyle\partial #2}}}
+ \def\ppdr #1#2#3 {\TrueMath{\frac{\displaystyle\partial^2 #1}{\displaystyle{\partial#2\partial#3}}}}
+ \def\delop       {\TrueMath{\iunit{\pdr \ x}+\junit{\pdr \ y}+\kunit{\pdr \ z}}}
+%\def\frac #1#2   {\TrueMath{#1 \over\displaystyle #2}}
+ \def\define      {\TrueMath{\,\buildrel \triangle \over = \,}}
+%
+% BRF macros
+ \def\DIM#1[#2]{$#1{\texttt[#2]}$}
+ \def\var(#1[#2]){$#1\;\texttt{[#2]}$}
+ 
+ \newcommand{\tab}     {\hspace{0.1in}}
+ \newcommand{\unit}[1]{\texttt{[#1]}}
+ \def\ls{\mbox{\tiny $\mathrsfs{S}$}}
+ \def\jw{\j\omega}
+%
+%    Definitions for Vector and Matrices
+%    and Macros  for Geometric Analysis
+%
+ \def\vec    #1 {\bm{#1}}                      %  Boldfaced vector
+ \def\cVec   #1 {\bm{#1}(t)}                   %  Boldfaced vector of continuous time
+ \def\dVec   #1 {\bm{#1}(k)}                   %  Boldfaced vector of discrete time
+ \def\vecdef#1#2{\bm{#1}(t)~=~[~#1_1(t),~#1_2(t),\cdots,~#1_{#2}(t)~]^T}
+ \def\vecdot#1  {\dot{\bm{#1}}(t)}             %  Boldfaced vector derivative
+ \def\dotVec#1  {\dot{\bm{#1}}}                %  Boldfaced vector derivative
+ \def\Dot#1     {\dot{\bm{#1}}(t)}             %  derivative
+ \def\vechat#1  {\TrueMath{\hat{\bm{#1}}(t)}}  %  Boldfaced vector hat
+ %  Matrix macro
+ \def\Matrix#1  {\TrueMath{\left[\begin{array}{c}\matrix{#1}\end{array}\right]}}  
+%
+%\newcommand{\vecs}[2]  {\TrueMath{\bm{#1}_{#2}(\vec{#3})}} %  Boldfaced vector of time macro      
+\newenvironment{matriz}{\TrueMath{\left[\begin{array}{c}}}{\end{array}\right]}
+\newenvironment{matriz3colBrackets}{\[\begin{array}{rcl}}{\end{array}\]}
+\newenvironment{matriz5colBrackets}{\[\begin{array}{rcrcl}}{\end{array}\]}
+\newenvironment{matriz3colLines}{\[\begin{array}{|rcl|}\hline}{\\\hline\end{array}\]}
+\newenvironment{matriz5colLines}{\[\begin{array}{|rcrcl|}\hline}{\\\hline\end{array}\]}
+\newcommand{\Matriz}[1] {\begin{matriz} \matrix{#1} \end{matriz}}
+%
+%
+\newcommand{\ax}        {\TrueMath{\alpha}}
+\newcommand{\bfeta}     {\hbox{\boldmath$\eta$}}
+\newcommand{\eps}       {\TrueMath{\varepsilon}}
+%
+\newcommand{\balpha}    {\TrueMath{\bm{\alpha}}}
+\newcommand{\bbeta}     {\TrueMath{\bm{\beta}}}
+\newcommand{\btheta}    {\TrueMath{\bm{\theta}}}
+\newcommand{\btau}      {\TrueMath{\bm{\tau}}}
+\newcommand{\bPhi}      {\TrueMath{\bm{\Phi}}}
+
+\renewcommand{\bb}        {\TrueMath{\bm{b}}}
+
+\newcommand{\bA}        {\TrueMath{\bm{A}}}
+\newcommand{\bB}        {\TrueMath{\bm{B}}}
+\newcommand{\bC}        {\TrueMath{\bm{C}}}
+\newcommand{\bc}        {\TrueMath{\bm{c}}}
+\newcommand{\bD}        {\TrueMath{\bm{D}}}
+\newcommand{\be}        {\TrueMath{\bm{e}}}
+\newcommand{\bE}        {\TrueMath{\bm{E}}}
+\newcommand{\bF}        {\TrueMath{\bm{F}}}
+\newcommand{\bff}       {\TrueMath{\bm{f}}}
+\newcommand{\bg}        {\TrueMath{\bm{g}}}
+\newcommand{\bG}        {\TrueMath{\bm{G}}}
+\newcommand{\bH}        {\TrueMath{\bm{H}}}
+\newcommand{\bh}        {\TrueMath{\bm{h}}}
+\newcommand{\bI}        {\TrueMath{\bm{I}}}
+\newcommand{\bJ}        {\TrueMath{\bm{J}}}
+\newcommand{\bK}        {\TrueMath{\bm{K}}}
+\newcommand{\bL}        {\TrueMath{\bm{L}}}
+\newcommand{\bp}        {\TrueMath{\bm{p}}}
+\newcommand{\bq}        {\TrueMath{\bm{q}}}
+
+\newcommand{\bfr}       {\bm{r}}%
+\newcommand{\bfk}       {\bm{k}}%
+\newcommand{\bfu}       {\bm{u}}%
+\newcommand{\bfb}       {\bm{b}}%
+
+\newcommand{\bsv}       {\TrueMath{\bm{s}}}
+\newcommand{\bP}        {\TrueMath{\bm{P}}}
+\newcommand{\bQ}        {\TrueMath{\bm{Q}}}
+\newcommand{\bR}        {\TrueMath{\bm{R}}}
+\newcommand{\bS}        {\TrueMath{\bm{S}}}
+\newcommand{\bT}        {\TrueMath{\bm{T}}}
+\newcommand{\bu}        {\TrueMath{\bm{u}}}
+\newcommand{\bU}        {\TrueMath{\bm{U}}}
+\newcommand{\bV}        {\TrueMath{\bm{V}}}
+\newcommand{\bW}        {\TrueMath{\bm{W}}}
+\newcommand{\bX}        {\TrueMath{\bm{X}}}
+\newcommand{\bx}        {\TrueMath{\bm{x}}}
+\newcommand{\by}        {\TrueMath{\bm{y}}}
+\newcommand{\bY}        {\TrueMath{\bm{Y}}}
+\newcommand{\bZ}        {\TrueMath{\bm{Z}}}
+\newcommand{\bzy}       {\TrueMath{\dot{\bm{y}}}}
+\newcommand{\bz}        {\TrueMath{\bm{z}}}
+\newcommand{\bzd}       {\TrueMath{\dot{\bm{z}}}}
+
+\newcommand{\dv}        {\TrueMath{\bm{d}(t)}}
+\newcommand{\ev}        {\TrueMath{\bm{e}(t)}}
+\newcommand{\hv}        {\TrueMath{\bm{h}(t)}}
+\newcommand{\nv}        {\TrueMath{\bm{n}(t)}}
+\newcommand{\uv}        {\TrueMath{\bm{u}(t)}}
+\newcommand{\udotv}     {\TrueMath{\dot{\bm{u}}(t)}}
+\newcommand{\vv}        {\TrueMath{\bm{v}(t)}}
+\newcommand{\wv}        {\TrueMath{\bm{w}(t)}}
+\newcommand{\xv}        {\TrueMath{\bm{x}(t)}}
+\newcommand{\xdotv}     {\TrueMath{\dot{\bm{x}}(t)}}
+\newcommand{\xvhat}     {\TrueMath{{\hat{\bm{x}}}(t)}}
+\newcommand{\xdotvhat}  {\TrueMath{\hat{\dot{\bm{x}}}(t)}}
+\newcommand{\yv}        {\TrueMath{\bm{y}(t)}}
+\newcommand{\ydotv}     {\TrueMath{\dot{\bm{y}}(t)}}
+\newcommand{\yvhat}     {\TrueMath{\hat{\bm{y}}}(t)}
+\newcommand{\zv}        {\TrueMath{\bm{z}(t)}}
+\newcommand{\zdotv}     {\TrueMath{\dot{\bm{z}}(t)}}
+\newcommand{\Wv}        {\TrueMath{\bm{W}(t)}}
+\newcommand{\ydv}       {\TrueMath{\bm{y}_d(t)}}
+%
+% - discrete vectors
+\newcommand{\dvd}       {\TrueMath{\bm{d}(k)}}
+\newcommand{\evd}       {\TrueMath{\bm{e}(k)}}
+\newcommand{\nvd}       {\TrueMath{\bm{n}(k)}}
+\newcommand{\uvd}       {\TrueMath{\bm{u}(k)}}
+\newcommand{\vvd}       {\TrueMath{\bm{v}(k)}}
+\newcommand{\xvd}       {\TrueMath{\bm{x}(k)}}
+\newcommand{\zvd}       {\TrueMath{\bm{z}(k)}}
+\newcommand{\yvd}       {\TrueMath{\bm{y}(k)}}
+\newcommand{\ydvd}      {\TrueMath{\bm{y}_d(k)}}
+\newcommand{\pvd}       {\TrueMath{\bm{p}}}
+\newcommand{\qvd}       {\TrueMath{\bm{q}}}
+%
+\newcommand{\fxv}       {\TrueMath{\bm{f}(\xv)}}
+\newcommand{\fxuv}      {\TrueMath{\bm{f}(\xv,\uv)}}
+\newcommand{\gxv}       {\TrueMath{\bm{g}(\xv)}}
+\newcommand{\hxv}       {\TrueMath{\bm{h}(\xv)}}
+%
+\newcommand{\fxvd}       {\TrueMath{\bm{f}(\xvd)}}
+\newcommand{\fxuvd}      {\TrueMath{\bm{f}(\xvd,\uvd)}}
+\newcommand{\gxvd}       {\TrueMath{\bm{g}(\xvd)}}
+\newcommand{\hxvd}       {\TrueMath{\bm{h}(\xvd)}}
+%
+\newcommand{\fxvhat}    {\TrueMath{{\hat{\bm{f}}}(\xvhat)}}
+\newcommand{\gxvhat}    {\TrueMath{{\hat{\bm{g}}}(\xvhat)}}
+\newcommand{\hxvhat}    {\TrueMath{{\hat{\bm{h}}}(\xvhat)}}
+%
+\newcommand{\Fv}        {\TrueMath{\bm{F}(\xv,\uv,\Wv)}}
+\newcommand{\Gv}        {\TrueMath{\bm{G}(\xv,\uv,\Wv,\ydv)}}
+\newcommand{\Hv}        {\TrueMath{\bm{H}(\xv,\uv,\Wv)}}
+\newcommand{\Wvt}       {\TrueMath{\bm{W}(\tau)}}
+\newcommand{\Wdef}      {\TrueMath{\Wv \equiv \left\{ \bb_{z}(\tau), \bW_{ff}(\tau), 
+                                   \bW_{fb}(\tau),    \bb_{x}(\tau), \bW_{z}(\tau), \bb_{v}(\tau), 
+                                   \bW_{x}(\tau),     \bb_{y}(\tau), \bW_{v}(\tau) \right\}
+                                  }
+                        }
+
+%-----------------------------------------
+\newcommand{\compare}[2]{
+		\ifnum #1 > #2
+			+1
+		\else
+			\ifnum #1 < #2
+				-1
+			\else
+				0
+			\fi
+		\fi
+}
+
+%-----------------------------------------
+\newcommand{\signo}[1]{
+	\ifnum \#1 > 0
+		1
+	\else
+		\ifnum \#1 < 0
+			-1
+		\else
+			0
+		\fi
+	\fi
+}
+
+%-----------------------------------------
+\newcommand{\positive}[1]{
+	\ifthenelse{#1 > 0}{
+	% "black and white" mode; do something..
+		TRUE
+	}{
+	% "color" mode; do something different..
+		FALSE
+	}
+}

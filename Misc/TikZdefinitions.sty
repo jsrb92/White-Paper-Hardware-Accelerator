@@ -1,0 +1,478 @@
+%
+%	File: TikZdefinitions.sty
+%
+{\typeout{--------------------------->loading... Package TikZdefinitions.sty}}%
+%
+%	Macros, Styles, etc. for BondGraph drawing.
+%
+ \NeedsTeXFormat{LaTeX2e}[1999/01/01]
+ %\ProvidesPackage{TikZdefinitions.sty}[2010/10/09]
+ \newboolean{TikZloaded}
+ \newboolean{TikZdefinitionsLoaded}
+ \newboolean{TikZbondGraphLoaded}
+ \newboolean{TikZneuralNetsLoaded}
+
+%------------------------------------------------------------------------------------
+%-----------------------------------packages-----------------------------------------
+%------------------------------------------------------------------------------------
+ \def\xcolorversion{2.00}
+ \def\xkeyvalversion{1.8}
+ \newenvironment{environment}[1]{}{}
+ \RequirePackage[version=latest]{pgf}
+ \RequirePackage{xargs}% <-------------------------------------- (clash with PGF!!)
+
+%\RequirePackage{TikZ}
+%----------------------------------------------------------------------------
+ \typeout{*[TikZdefinitions]* ... Trying to load --------> Package TikZ.sty ...}
+   \IfFileExists{tikz.sty}
+	{\usepackage{tikz}
+	 \typeout{*[TikZdefinitions]*--------------->Package TikZ.sty loaded.}
+	 \setboolean{TikZloaded}{true}
+%----------------------------------------
+	 \typeout{*[TikZdefinitions]* --------> PGF packages ...}%
+	 \usepackage{pgfsys}
+	 \usepackage{pgffor}
+
+	 \usepackage{pgfplots}
+	 \usepackage{pgfplotstable}
+	 \usepackage{pgf-umlcd}
+%----------------------------------------
+	}
+	{\typeout{Package tikz.sty was not found.}
+	 \typeout{*[TikZdefinitions]*--------------->Package TikZ.sty not loaded.}
+	 \setboolean{TikZloaded}{false}
+	}
+
+%\RequirePackage{TikZbondGraph}
+%----------------------------------------------------------------------------
+\ifthenelse{\boolean{TikZbondGraphLoaded}}%
+ {\typeout{*[TikZdefinitions]* ... Trying to load --------> Package TikZbondGraph.sty ...}
+    \IfFileExists{TikZbondGraph.sty}
+ 	 {\usepackage{TikZbondGraph}}
+ 	 {\typeout{Package TikZbondGraph.sty was not found.}}
+ \ifthenelse{\boolean{TikZbondGraphLoaded}}%
+ {\typeout{*[TikZdefinitions]* --------> Package TikZbondGraph.sty loaded.}
+  \setboolean{TikZbondGraphLoaded}{true}
+ }% 
+ {\typeout{*[TikZdefinitions]* --------> Package TikZbondGraph.sty not loaded.}
+  \setboolean{TikZbondGraphLoaded}{false}
+ }% 
+ }
+ {\typeout{*[no tikz] ----------------> Package TikZbondGraph.sty not loaded.}
+  \setboolean{TikZbondGraphLoaded}{false}
+ }%
+
+%\RequirePackage{TikZneuralNets}
+%----------------------------------------------------------------------------
+\ifthenelse{\boolean{TikZneuralNetsLoaded}}%
+ {\typeout{*[TikZdefinitions]* ... Trying to load --------> Package TikZneuralNets.sty ...}
+    \IfFileExists{TikZneuralNets.sty}
+ 	 {\usepackage{TikZneuralNets}}
+ 	 {\typeout{Package TikZneuralNets.sty was not found.}}
+ \ifthenelse{\boolean{TikZbondGraphLoaded}}%
+ {\typeout{*[TikZdefinitions]* --------> Package TikZneuralNets.sty loaded.}}% 
+ {\typeout{*[TikZdefinitions]* --------> Package TikZneuralNets.sty not loaded.}}% 
+ }
+ {
+  \typeout{*[no tikz] ----------------> Package TikZneuralNets.sty not loaded.}
+ }
+
+%
+%----------------------------------------
+	\typeout{*[TikZdefinitions]* --------> tkz packages ...}%
+	\usepackage{tkz-tab}
+%	\usepackage{tkz-berge}
+%	\usepackage{tkz-plot2d}
+%	\usepackage{tkz-2d}
+	\usepackage[np,autolanguage]{numprint}
+%----------------------------------------
+\typeout{*[TikZdefinitions]* --------> extra packages ...}%
+ \usepackage{xkeyval}
+ \usepackage{xxcolor}
+ \usepackage{calc}
+ \usepackage{listings}
+ \usepackage{verbatim}
+
+% \usepackage{longtable}
+ \pgfplotsset{compat=newest}
+
+%------------------------------------------------------------------------------------
+%-----------------------------------TikZ libraries-----------------------------------
+%------------------------------------------------------------------------------------
+%
+
+\typeout{*[TikZdefinitions]* --------> tikzlibrary components ...}%
+% We need lots of libraries...
+\usetikzlibrary{%
+  arrows,%
+  automata,%
+  backgrounds,%
+  calc,%
+  calendar,%
+  chains,%
+  circuits,%  
+  circuits.logic.US,%
+  circuits.logic.IEC,%
+  datavisualization,%
+  datavisualization.formats.functions,%
+  decorations,%
+  decorations.pathreplacing,%
+  decorations.pathmorphing,%
+  decorations.footprints,%
+  decorations.fractals,%
+  decorations.markings,%
+  decorations.pathmorphing,%
+  decorations.pathreplacing,%
+  decorations.shapes,%
+  decorations.text,%
+  er,%
+  fadings,%
+  fit,%
+  fixedpointarithmetic,%
+  folding,%
+  %fp,%
+  intersections,%
+  math,%
+  matrix,%
+  mindmap,%
+  patterns,%
+  petri,%
+  plotmarks,%
+  positioning,%
+  scopes,%
+  shadings,%
+  shadows,%
+  shapes,%
+  shapes.arrows,%
+  shapes.callouts,%
+  shapes.gates.logic.US,%
+  shapes.gates.logic.IEC,%
+  shapes.geometric,%
+  shapes.misc,%
+  shapes.multipart,%
+  shapes.symbols,%
+  topaths,%
+  trees,%
+  through%
+}
+
+%------------------------------------------------------------------------------------
+%-----------------------------------definitions--------------------------------------
+%------------------------------------------------------------------------------------
+
+\typeout{*[TikZdefinitions]* --------> tzbondgraph components ...}%
+%\usepackage{tzbondgraph}
+\usepackage{pgf-umlcd}
+
+\def\TikZ{Ti\emph{k}Z}
+\def\cTikZ{
+	T\kern-.31em\lower.345ex\hbox{i}%
+	 \kern-.155em\raise0.5ex\hbox{\emph{k}}%
+	 \kern-0.175em\lower.215ex\hbox{Z}
+	}
+	
+%\def\TeX{T\kern{-0.1667em}\lower{0.5 ex}{E}\kern{-0.125em}X}
+%
+%\def\LaTeX{%
+%  L\kern-.36em {\setbox0=\hbox{T} \vbox to \ht0{\hbox{\selectfonts\lllsize A}\vss}}%
+%  \kern-.15em \TeX
+%}
+%
+%\def\LaTeX2{L\kern-.26em \raise.6ex\hbox{\fiverm A} \kern-.15em TeX}%
+%
+%\def\LaTeXe{\mbox{\LaTeX\kern.15em$2_{\textstyle\varepsilon}$}}
+
+
+% \def\myLaTeX{
+% 	\mbox{L\kern-.36em
+%		 {\setbox0=\hbox{T} \vbox to \ht0{\hbox{\selectfonts\lllsize A}\vss}}%
+%  			\kern-.15em T\kern-0.1667em\lower{0.5ex}{E}\kern-0.125em X}
+% }
+
+\typeout{*[TikZdefinitions]* --------> TikZ styles ...}%
+\tikzset{every plot/.style={prefix=plots/pgf-}}
+\tikzset{shape example/.style={color=black!30,draw,fill=yellow!20,
+    							 line width=.5cm,inner xsep=25mm,inner ysep=5mm}}
+\tikzstyle{dot}=[fill=blue,circle,minimum size=0.1mm]
+\tikzset{point/.style={coordinate,draw=none},>=stealth,thick,draw=black!50}
+\tikzset{element/.style={coordinate,draw=none},>=stealth,thick,draw=black!50}
+\tikzset{signal/.style={cloud, cloud ignores aspect, cloud puffs=17,draw,fill=green!10}}
+\tikzset{block/.style={rectangle,draw,fill=yellow!10, inner sep=2mm}}
+\tikzset{sum/.style={circle,draw,fill=black!10}}
+\tikzset{connector/.style={thick,blue!50!black,-to,draw}}
+\tikzset{tip/.style={->,shorten >=0.007pt},every join/.style={rounded corners}}
+\tikzset{hv path/.style={to path={-| (\tikztotarget)}}}
+\tikzset{vh path/.style={to path={|- (\tikztotarget)}}}
+\tikzset{outline/.style={anchor=mid,draw=#1,fill=#1!20,thick,line join=round,line cap=round}}
+\tikzset{colorBox/.style={anchor=center,draw=#1!50!black,fill=#1!50!white,thick,
+						   line join=round,line cap=round,
+						   drop shadow={opacity=0.25,fill=#1!25!black}}}
+\tikzset{colorBox/.default=black}
+\tikzset{stikyNotePad/.style={fill=#1,draw,thick, minimum height=10mm, minimum width=15mm,
+					decorate, decoration={random steps,segment length=3pt,amplitude=1pt}}}
+\tikzset{stikyNotePad/.default=yellow!50}
+% Neural Networks Elements
+\tikzset{neuron/.style ={circle,circular drop shadow,text=white,inner sep=1mm,minimum size=10mm,
+							node distance=15mm and 15mm,fill=orange,draw=none,fill=gray!50}}
+\tikzset{hiddenLayer/.style ={neuron,node distance=15mm and 35mm,fill=orange,draw=none}}
+\tikzset{outputLayer/.style ={neuron,node distance=25mm and 45mm,fill=green!50!black}}
+\tikzset{inputLayer/.style  ={neuron,node distance=25mm and 35mm,fill=blue!80}}
+\tikzset{stateLayer/.style  ={neuron,node distance=25mm and 35mm,fill=red}}
+\tikzset{axon/.style={thick,blue!75!black,-latex,draw,text=blue!25!black}}
+\tikzset{fxdAxon/.style={axon,draw=blue!25!black,dashed,text=blue!25!black}}
+\tikzset{fbfxAxon/.style={axon,draw=red!75!black,dashed,text=red!75!black}}
+\tikzset{fdbkAxon/.style={axon,draw=red!75!black,text=red!75!black}}
+
+{\typeout{*[TikZdefinitions]* --------> definitions ...}}%
+\colorlet{examplefill}{yellow!80!black}
+\definecolor{graphicbackground}{rgb}{0.96,0.96,0.8}
+\definecolor{codebackground}{rgb}{0.8,0.8,1}
+
+\def\TikZlogo{\Huge Ti\textcolor{orange}{\emph{k}}Z}
+\newcommand{\alarm}[1]{\textcolor{orange}{#1}}
+\newcommand{\hilite}[1]{\textcolor{orange!80!black}{#1}}
+
+\def\beamer{\textsc{beamer}}
+\def\pdf{\textsc{pdf}}
+\def\pgfname{\textsc{pgf}}
+\def\tikzname{Ti\emph{k}Z}
+\def\pstricks{\textsc{pstricks}}
+\def\prosper{\textsc{prosper}}
+\def\seminar{\textsc{seminar}}
+\def\texpower{\textsc{texpower}}
+\def\foils{\textsc{foils}}
+%\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+
+%------------------------------------------------------------------------------------
+%-----------------------------------graphic macros-----------------------------------
+%------------------------------------------------------------------------------------
+\typeout{*[TikZdefinitions]* --------> graphic macros ...}%
+
+%
+%	nodeShadowed : {\nodeShadowed}[4]
+%	------------   ------------------
+%	parameters:
+%		#1: location node [coordinate]
+%		#2: text (object) to be displayed in box
+%		#3: scale of text (object)
+%		#4: vertical displacement
+%
+%	Makes a three-layer-perceptron between #1 & #2.
+%
+\newbox\reflectionBox
+\def\nodeShadowed[#1]#2(#3,#4);{
+	\node[scale=#3,above=#4+1.25ex,#1]{\global\setbox\reflectionBox=\hbox{#2}\copy\reflectionBox};
+	\node[scale=#3,below=#4+1.25ex,#1,yscale=-1,scope fading=south,opacity=0.5]{\box\reflectionBox};
+	}
+
+%
+%	minipage : \mpage{#1}{#2}
+%	--------   --------------
+%	parameters:
+%		#1: width  in [cm]
+%		#2: text to be included in minipage
+%
+%	Makes a framebox (of size #1) of [#2} input on. 
+%
+\newcommand{\mpage}[2]{ \begin{minipage}[c]{#2}{#1}\end{minipage} }
+
+%
+%	minipage Block : \mBlock{#1}{#2}
+%	-------- -----   ---------------
+%	parameters:
+%		#1: width  in [cm]
+%		#2: text to be included in minipage
+%		#3: alignment of minipage with respect to document
+%		#4: alignment of text in minipage
+%
+%	Makes a framebox (of size #1) of [#2} input on. 
+%
+\newcommandx{\mBlock}[4][3=c,4=c]
+		{
+		\begin{minipage}[#3]{#1}
+			\begin{center}
+			  \begin{tabular}{#4}
+				\noindent #2
+			  \end{tabular}
+			\end{center}
+		\end{minipage} 
+		}
+
+%
+%	stickyNote : \stickyNote[7]
+%	----------   --------------
+%	parameters:
+%		#1: location node [coordinate]
+%		#2: text (object) to be displayed in stikyBox
+%		#3: width of stickyBox in [cm]
+%		#4: fill color of stikyBox
+%		#5: rotation of box
+%		#6: alignment of minipage with respect to document
+%		#7: alignment of text in minipage
+%
+%	Make a sticky note of fixed width
+%	The height is adjusted of the size of the text
+%
+\newcommandx{\stikyNote}[7]%[3=2cm,4=yellow!50,5=0,6=c,7=c]
+		{
+			\node [draw,stikyNotePad=#4,rotate=#5]
+					at (#1) {\noindent\mBlock{#3}{#2}{#6}{#7}};
+		}
+			
+%
+%	fixedwidth : \fixedwidth[2]
+%	----------   ----------------------
+%	parameters:
+%		#1: text to be fitted (scaled) to length
+%		#2: width to which the text is to be fitted
+%
+%	Adjust the size of the text to fit in the specified width
+%
+\newlength{\fxWidth}
+\newcommand{\fixedwidth}[2]{%
+	\settowidth{\fxWidth}{#1}%
+	\pgfmathsetmacro{\x}{round(#2/\fxWidth * 10)}%
+	\pgfmathsetmacro{\y}{round(#2/\fxWidth * 15)}%
+	\bgroup
+		\noindent\fontsize{\x pt}{\y pt}\selectfont #1
+	\egroup
+}%
+
+%
+%	draw center of gravity : {\drawCG}[3]
+%	----------------------   ------------
+%	parameters:
+%		#1: center point of CG [coordinate]
+%		#2: radius of CG in [mm]
+%		#3: angle  of CG in [degrees]
+%
+%	Makes cross-haired pattern yellow/black centered at the origin (CG)
+%		- draws four quadrants rotated by #3 with alternating colors
+%		  yellow and black, enclosed by a circle of radius #2.
+%
+\newcommand{\drawCG}[3]{%
+	\colorlet{liteColor}{yellow!25}
+	\colorlet{darkColor}{black!75}
+%	% draw quadrants in light(yellow) and dark(black) colors
+	\filldraw[fill=liteColor]	(#1) circle (#2);
+	\filldraw[fill=darkColor]	(#1) -- +(#3:#2) arc (#3:{#3-90}:#2) -- cycle;
+	\filldraw[fill=darkColor]	(#1) -- +({#3+180}:#2) arc ({#3+180}:{#3+90}:#2) -- cycle;
+%    draw crosshair
+    \draw[line width=1pt] (#1) % draw crosshair
+		+(#3:#2) -- +(#3:-#2)
+		+({#3+90}:#2) -- +({#3+90}:-#2);
+}
+
+%
+%	squared paper : \cuadriculado[#1 X #2]
+%	-------------   ----------------------
+%	parameters:
+%		#1: width  in [cm]
+%		#2: height in [cm]
+%
+%	Makes grid paper centered at the origin:
+%		- from -#1/2 to #1/2 in the horizontal,
+%		- from -#2/2 to #2/2 in the vertical,
+%		- makes grid lines (lightblue)  2mm apart, 
+%		- makes grid lines (lightred)  10mm apart,  and
+%		- frames the figure with dark gray lines. 
+%
+\def\cuadriculado[#1 X #2]% option centered | bottom-left[default]
+{
+  	\draw[very thin ,step=0.2cm,blue!20] 		 (-#1/2,-#2/2)   grid    (#1/2,#2/2);
+  	\draw[help lines,step=1.0cm,thick,red!80]	 (-#1/2,-#2/2)   grid    (#1/2,#2/2);
+  	\draw[very thick,black!75] 				 (-#1/2,-#2/2) rectangle (#1/2,#2/2);
+}
+
+%
+%	squared paper : \graphicPaper[#1,#2]X[#3,#4]
+%	-------------   ----------------------------
+%	parameters:
+%		#1: left   x-coordinate in [cm]
+%		#2: bottom y-coordinate in [cm]
+%		#3: right  x-coordinate in [cm]
+%		#4: top    y-coordinate in [cm]
+%
+%	Makes grid paper:
+%		- from #1 to #2 in the horizontal,
+%		- from #3 to #4 in the vertical,
+%		- makes grid lines (lightblue)  2mm apart,
+%		- makes grid lines (lightred)  10mm apart,  and
+%		- frames the figure with dark gray lines. 
+%
+\def\graphicPaper[#1,#2]X[#3,#4]% option drawAxes [default=true]
+{
+  	\draw[very thin ,step=0.2cm,blue!20] 		 (#1,#3)   grid    (#2,#4);
+  	\draw[help lines,step=1.0cm,thick,red!80]	 (#1,#3)   grid    (#2,#4);
+  	\draw[very thick,black!75] 				 (#1,#3) rectangle (#2,#4);
+}
+
+%
+%	labeled grid paper : \gridLabeled[#1,#2]X[#3,#4]
+%	------------------   ---------------------------
+%	parameters:
+%		#1: left   x-coordinate in [cm]
+%		#2: bottom y-coordinate in [cm]
+%		#3: right  x-coordinate in [cm]
+%		#4: top    y-coordinate in [cm]
+%
+%	Makes grid paper centered at the origin with numbered coordinate labels:
+%		- from #1 to #2 in the horizontal,
+%		- from #3 to #4 in the vertical,
+%		- makes grid lines (lightblue)  2mm apart,
+%		- makes grid lines (lightred)  10mm apart,  and
+%		- frames the figure with dark gray lines. 
+%
+\def\gridLabeled[#1,#2]X[#3,#4]% option drawAxes [default=true]
+{
+  	\tikzmath{
+    	\xMin      = #1;
+      	\xMax      = #3;
+      	\yMin      = #2;
+      	\yMax      = #4;
+    	\offset    = 0.5;
+    	\xLeft     = \xMin - \offset;
+    	\xRight    = \xMax + \offset;
+    	\yBottom   = \yMin - \offset;
+    	\yTop      = \yMax + \offset;
+	}
+	\draw[very thin ,step=0.2cm,blue!20] 	  (\xLeft,\yBottom)   grid    (\xRight,\yTop);
+  	\draw[help lines,step=1.0cm,thick,red!80] (\xLeft,\yBottom)   grid    (\xRight,\yTop);
+  	\draw[very thick,black!75] 				  (\xLeft,\yBottom) rectangle (\xRight,\yTop);
+	\foreach \x in {\xMin,...,\xMax} {\node [anchor=north] at (\x,\yBottom) {\x};}
+	\foreach \y in {\yMin,...,\yMax} {\node [anchor=east]  at (\xLeft,\y)   {\y};}
+}
+
+%
+%	quadrant : \quadrante(#1,#2)
+%	--------   -----------------
+%	parameters:
+%		#1: x-coordinate of point
+%		#2: y-coordinate of point
+%		
+%	determines which quadrant the point is in
+%
+\newdimen\quadrant
+\def\quadrante(#1,#2){
+	\ifnum #1 > 0
+		\ifnum #2 > 0
+			\quadrant=1
+		\else
+			\quadrant=4
+		\fi
+	\else % 90 < #4 < 270
+		\ifnum #2 > 0
+			\quadrant=2
+		\else
+			\quadrant=3
+		\fi
+	\fi
+	\quadrant
+}
+
+%-----------------------------------------------------------------
+\setboolean{TikZdefinitionsLoaded}{true}
+%-----------------------------------------------------------------
+{\typeout{ <--------------------------- Package TikZdefinitions.sty loaded!}}
+

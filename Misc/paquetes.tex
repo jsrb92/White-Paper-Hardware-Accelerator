@@ -1,0 +1,102 @@
+%
+%	Packages
+%
+ \message{*[paquetes]* Packages (lots).................................[sub defs]}
+
+%\RequirePackage{ifthen}
+   \IfFileExists{ifthen.sty}
+	{\usepackage{ifthen}
+	 \typeout{... using Package ``ifthen.sty''}}
+	{\typeout{Package ``ifthen.sty'' was not found.}}
+
+ \RequirePackage{amsmath}
+ \RequirePackage{amsfonts}
+ \RequirePackage{amssymb}
+ \usepackage{latexsym}
+ 
+ \RequirePackage{pdfsync}
+ \usepackage{pdfscreen}   % for Slides
+ 
+ \RequirePackage{color}
+
+%\RequirePackage{TikZdefinitions}
+% - includes TikZbondGraph, TikZneuralNets by Benito R. Fernandez
+ \typeout{... Trying to load --------> Package TikZdefinitions.sty ...}
+   \IfFileExists{Misc/TikZdefinitions.sty}
+	{\usepackage{Misc/TikZdefinitions}
+	 \typeout{*[paquetes]* <--------- Package TikZdefinitions.sty (already) loaded.}
+	 \setboolean{TikZloaded}{true}
+	}
+	{\typeout{Package TikZdefinitions.sty was not found.}
+	 \typeout{*[paquetes]* <--------------- Package TikZdefinitions.sty not loaded.}
+	 \setboolean{TikZloaded}{false}
+	}
+ \usepackage{makeidx}
+ \usepackage[latin1]{inputenc}
+
+%\RequirePackage{pstricks}
+ \RequirePackage{snapshot}
+ \usepackage{float}
+ \usepackage{longtable}
+% \usepackage{bm}
+ \usepackage{type1cm} % allow arbitrary scaling
+ \usepackage{relsize}
+ \usepackage{url}
+% \usepackage{bar}
+% \usepackage{barddoc}
+% \usepackage{subeqn}
+ \usepackage{subeqnarray}
+ \usepackage{caption}    % <- \usepackage{subfig} <- % \usepackage{subfigure}
+ \usepackage{subcaption} % <- \usepackage{subfig} <- % \usepackage{subfigure}
+ \usepackage{wrapfig}
+ \usepackage{multirow}
+% \usepackage{palatino}
+ \usepackage{mflogo}		% for METAFONT 
+% \usepackage{emp}		    %       <<<<<< WHAT IS THIS?
+ \usepackage{pifont}		% for \ding{#} macros
+ \usepackage{fancyhdr}
+ \usepackage{smartdiagram}  % <-  for samrt diagrams
+
+ \usepackage{xspace}
+ 
+ \usepackage{listings}
+ 
+ \lstdefinestyle{customMatLab}{
+  title=\lstname,            % show the filename of files included with 
+                             % \lstinputlisting; also try caption instead of title
+  belowcaptionskip=1\baselineskip,
+  language=Matlab,           % choose the language of the code
+  basicstyle=\footnotesize\ttfamily, % the size of the fonts that are used  
+  numbers=left,              % where to put the line-numbers
+  xleftmargin=\parindent,    % left margin separation
+  breaklines=true,           % sets automatic line breaking
+  stepnumber=1,              % the step between two line-numbers. 
+                             % If it's 1 each line will be numbered
+  numbersep=2mm,             % how far the line-numbers are from the code
+  backgroundcolor=\color{white}, % choose the background color.  
+  							   % You must add \usepackage{color}
+  showspaces=false,          % show spaces adding particular underscores
+  showstringspaces=false,    % underline spaces within strings
+  showtabs=false,            % show tabs within strings adding particular  
+  							   % underscores
+  frame=single,              % adds a frame around the code
+  tabsize=2,                 % sets default tabsize to 2 spaces
+  captionpos=b,              % sets the caption-position to bottom
+  stringstyle=\color{orange},% string literal style
+  commentstyle=\color{red}, % comment style
+  keywordstyle=\bfseries\color{blue}, % keyword style
+  identifierstyle=\color{marron},
+  numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
+  rulecolor=\color{morado},  % if not set, the frame-color may be changed on 
+                             % line-breaks within not-black text
+  breaklines=true,           % sets automatic line breaking
+  breakatwhitespace=false,   % sets if automatic breaks should only happen  
+                             % at whitespace
+  escapeinside={\%*}{*)}     % if you want to add a comment within your code
+  extendedchar=true,         % lets you use non-ASCII characters; for 8-bits  
+ }%\lstdefinestyle
+ 
+ \newcommand{\includecode}[2][MatLab]{\lstinputlisting[caption=#2, 
+                                 escapechar=@, style=custom#1]{#2}}
+ 
+ \typeout{*[paquetes]* <--------------- Packages loaded!}

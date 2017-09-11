@@ -1,0 +1,205 @@
+%
+%
+% System Definitions
+%
+ \message{*[dynamicSystemDefs]* System Definitions.................................[sub defs]}
+%
+%	on macros
+%
+ \def\on#1{\TrueMath{~\in~{\cal R}^{\sl #1}}} % Belong to Space Dimension
+ \def\onS(#1,#2){\TrueMath{\displaystyle{\:\in \mathbb{#1}^{#2}}}} % In S^{n}
+ \def\onN#1{\TrueMath{\displaystyle{\:\in \mathbb{N}^{#1}}}}  % In Space N^{n}
+ \def\onR#1{\TrueMath{\displaystyle{\:\in \mathbb{R}^{#1}}}}  % In Space R^{n}
+ \def\onZ#1{\TrueMath{\displaystyle{\:\in \mathbb{Z}^{#1}}}}  % In Space Z^{n}
+ \def\onC#1{\TrueMath{\displaystyle{\:\in \mathbb{C}^{#1}}}}  % In Space C^{n}
+%
+% SISO:
+%
+\def\SISO{
+\begin{eqnarray}\begin{array}{cclcl}
+ \xdotv & = & \fxv~+~\gxv~u(t)~+~\dv,&&\xv~\onR{n},~u(t)~\onR{1}
+ \label{eq:SISO:1} \\
+ y(t) & = & h(\xv),&&y(t)~\onR{1}
+\label{eq:SISO:2}\end{array}\end{eqnarray}
+}
+%
+% MIMO:
+%
+\def\MIMO{
+ \begin{eqnarray}\begin{array}{cclcl}
+  \vecdot{x} & = & \fxv~+~\gxv~\uv~+~\dv,&&\xv~\onR{n},~\uv~\onR{m}
+  \label{eq:MIMO:1} \\
+  \yv & = & \hxv,&&\yv~\onR{p}
+  \label{eq:MIMO:2}
+ \end{array}\end{eqnarray}
+}%\def\MIMO
+\newcommand{\cMIMO}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vecdot{x} & = & \fxv~+~\gxv~\uv~+~\dv,&&\xv,~\dv~\onR{n},~\uv~\onR{m}
+  \\[2.5mm]
+  \yv        & = & \hxv~+~\nv,&&\yv,~\nv~\onR{p}
+ \end{array}\end{eqnarray}
+}%\newcommand{cMIMO}[1]
+\newcommand{\cMIMOlinear}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vecdot{x} & = & \bA\xv~+~\bB\uv~+~\bm{\Gamma}\dv, &&\xv,~\dv~\onR{n},~\uv~\onR{m}
+  \\[2.5mm]
+  \yv        & = & \bC\xv~+~\bD\uv~+~\bm{\Lambda}\nv,&&\yv,~\nv~\onR{p}
+ \end{array}\end{eqnarray}
+}%\newcommand{\cMIMOlinear}[1]
+\newcommand{\cMIMOlinearFull}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vecdot{x} & = & \bA\xv~+~\bB\uv~+~\bE\vec{p}(t)~+~\bm{\Gamma}\wv, 
+                && \xv~\onR{n},~\uv~\onR{m},~\vec{p}(t)~\onR{\ell}
+  \\[2.5mm]
+  \yv        & = & \bC\xv~+~\bD\uv~+~\bF\vec{p}(t)~+~\bm{\Lambda}\vv,
+                && \yv~\onR{p},~\wv~\onR{\nu_d},~\vv~\onR{\nu_n}
+ \end{array}\end{eqnarray}
+}%\newcommand{\cMIMOlinearFull}[1]
+\newcommand{\dMIMO}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vec{x}(k+1) & = & \fxvd~+~\gxvd~\uvd~+~\dvd,&&\xvd,~\xvd~\onR{n},~\uvd~\onR{m}
+  \\[2.5mm]
+  \yvd         & = & \hxvd~+~\nvd,&&\yvd,~\nvd~\onR{p}
+ \end{array}\end{eqnarray}
+}%\newcommand{\dMIMOdef}
+\newcommand{\dMIMOlinear}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vec{x}(k+1) & = & \bA\vec{x}_k~+~\bB\vec{u}_k~+~\bm{\Gamma}\vec{v}_k, 
+                  &&\vec{x}_k,~\vec{w}_k~\onR{n},~\vec{u}_k~\onR{m}
+  \\[2.5mm]
+  \vec{y}_k    & = & \bC\vec{x}_k~+~\bD\\vec{u}_k~+~\bm{\Lambda}\vec{v}_k,
+                  &&\vec{y}_k,~\vec{v}_k~\onR{p}
+ \end{array}\end{eqnarray}
+}%\newcommand{\dMIMOlinear}[1]
+\newcommand{\dMIMOlinearFull}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \vec{x}(k+1) & = & \bA\vec{x}_k~+~\bB\vec{u}_k~+~\bE\vec{p}_k~+~\bm{\Gamma}\vec{v}_k, 
+                  &&\vec{x}_k,~\vec{w}_k~\onR{n},~\vec{u}_k~\onR{m}
+  \\[2.5mm]
+  \vec{y}_k    & = & \bC\vec{x}_k~+~\bD\\vec{u}_k~+~\bF\vec{p}_k~+~\bm{\Lambda}\vec{v}_k,
+                  &&\vec{y}_k,~\vec{v}_k~\onR{p}
+ \end{array}\end{eqnarray}
+}%\newcommand{\dMIMOlinearFull}[1]
+\def\MIMOhat{
+ \begin{eqnarray}\begin{array}{cclcl}
+  \xdotvhat & = & \fxvhat~+~\gxvhat~\uv,&&\xvhat~\onR{n},~\uv~\onR{m}
+  \label{eq:MIMOhat:1} \\
+  \yvhat    & = & \hxvhat,&&\yvhat~\onR{p}
+  \label{eq:MIMOhat:2}
+ \end{array}\end{eqnarray}
+}%\def\MIMOhat
+\def\ELO{
+ \begin{eqnarray}\begin{array}{cclcl}
+  \xdotvhat & = & \fxvhat~+~\gxvhat~\uv~+~\bL\ev(t),&&\xvhat~\onR{n},~\uv~\onR{m}
+  \label{eq:ELO:1} \\
+  \yvhat    & = & \hxvhat,&&\yvhat~\onR{p}
+  \label{eq:ELO:2}\\
+  \ev(t)    & = & \yv-\yvhat,&&\ev(t)~\onR{p}
+  \label{eq:ELO:3}
+ \end{array}\end{eqnarray}
+}%\def\ELO
+\def\cELO{
+  \begin{eqnarray}\begin{array}{cclcl}
+  \xdotvhat & = & \fxvhat~+~\gxvhat~\uv~+~\bL\ev,&&\xvhat~\onR{n},~\uv~\onR{m}
+  \label{eq:cELO:1} \\
+  \yvhat    & = & \hxvhat,&&\yvhat~\onR{p}
+  \label{eq:cELO:2}\\
+  \ev       & = & \yv-\yvhat,&&\ev~\onR{p}
+  \label{eq:cELO:3}
+ \end{array}\end{eqnarray}
+}%\def\dELO
+\def\dELO{
+  \begin{eqnarray}\begin{array}{cclcl}
+  \vechat{x}(k+1) & = & \bm{\hat{f}}(\vechat{x}_k)~+~\bm{\hat{g}}(\hat{\xv}_k)~\uv_k~+~
+                           \bL\ev_k,&&\hat{\xv}_k~\onR{n},~\uv_k~\onR{m}
+  \label{eq:dELO:1} \\
+  \vechat{y}_k    & = & \bm{\hat{f}}(\vechat{x}_k),&&\hat{\yv}_k ~\onR{p}
+  \label{eq:dELO:2}\\
+  \vechat{e}_k    & = & \yv_k-\hat{\yv}_k,&&\ev~\onR{p}
+  \label{eq:dELO:3}
+ \end{array}\end{eqnarray}
+}%\def\dELO
+\newcommand{\cELOlinear}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{cclcl}
+  \xdotvhat & = & \bA\xv~+~\bB\uv~+~\bL\ev(t),&&\xvhat~\onR{n},~\uv~\onR{m}
+  \label{eq:cELOlinear:1} \\
+  \yvhat    & = & \bC\xv~+~\bD\uv,&&\yvhat~\onR{p}
+  \label{eq:cELOlinear:2}\\
+  \ev(t)    & = & \yv-\yvhat,&&\ev(t)~\onR{p}
+  \label{eq:cELOlinear:3}
+ \end{array}\end{eqnarray}
+}%\newcommand{\cELOlinear}[1]
+\newcommand{\dELOlinear}[1]{
+ \begin{eqnarray}\label{#1}\begin{array}{lclcl}
+  \hat{\vec{x}}(k+1) & = & \bA\hat{\xv}_k~+~\bB\uv_k~+~\bL\vec{e}_k, 
+                        &&\hat{\xv}_k~\onR{n},~\vec{u}_k~\onR{m}
+  \\[2.5mm]
+  \hat{\yv}_k        & = & \bC\hat{\xv}_k~+~\bD\\vec{u}_k~+~\bm{\Lambda}\vec{v}_k,
+                        && \vec{y}_k,~\vec{v}_k~\onR{p}\\
+  \ev_k              & = & \yv_k-\hat{\yv}_k,&&\ev~\onR{p}
+  \label{eq:dELO:3}
+ \end{array}\end{eqnarray}
+}%\newcommand{\dELOlinear}[1]
+%
+% Relative Order:
+%
+\def\ROrder{
+ \begin{eqnarray}
+  y^{[r]}~\equiv~\frac{d^r}{dt^r} [y(t)] ~\equiv~ \left\{ 
+ \begin{array}{lc}
+ \Lies{f}{h}{k} & k\le r \nonumber \\
+ \label{eq:ROrder} \\
+ \Lies{f}{h}{r} + \Lie{g}{\Lies{f}{h}{r-1}} \uv & k = r \nonumber
+\end{array} \right. \end{eqnarray}
+}
+%
+% Lie Derivative macros
+%
+% Full Lie Derivative macro (vector)
+ \def\LL{\TM{\mathrsfs{L}}}
+ \def\fLie(#1,#2,#3)  {\TM{\LL_{\bm{#1}}\bm{#2}(\bm{#3})}}      %  Lie (vector)    
+ \def\fLei#1^#2,#3(#4){\TM{\LL_{\bm{#1}}^{#2}\bm{#3}(\bm{#4})}} % nLie (vector)
+%
+ \newcommand{\Lie} [2]{\TM{\LL_{\bm{#1}}\bm{#2}(\bm{x})}}%  Lie Derivative (vector)
+%\newcommand{\Lie} [2]{\TM{\LL_{\bm{#1}}(\bm{#2})}}      %  Lie (vector)
+ \newcommand{\Lies}[3]{\TM{\LL_{\bm{#1}}^{#3}(\bm{#2})}} % nLie (vector)
+ \newcommand{\lie} [2]{\TM{\LL_{\bm{#1}}(#2)}}           %  Lie (scalar)
+ \newcommand{\lies}[3]{\TM{\LL_{\bm{#1}}^{#3}(#2)}}      % nLie (scalar)
+%
+ \def\Leis#1^#2,#3{\TM{\LL_{\bm{#1}}^{#2}(\bm{#3})}} % nLie (vector)
+ \def\LieBracket[#1,#2]{\TM{\bm{\left[#1,#2\right]}}}    % Lie Bracket (vector)
+ \def\LieBracketDef[#1,#2]{\TM{\LieBracket[#1,#2] \defas \bm{\myPar(#2/x)\cdot #1}
+                                                        -\bm{\myPar(#1/x)\cdot #2}}}
+ \def\dotprod<#1,#2>{\bm{#1 \cdot #2}}
+ \def\dotProDef<#1,#2>{\left<\bm{#1},\bm{#2}\right>=\dotprod<#1,#2>
+                       \equiv\sum_{j=1}^{n}#1_{j}\cdot#2_{j}}
+%
+% Math Definitions (generic)
+%
+\newcommand{\magn}[1]{\left\vert #1\right\vert}
+\newcommand{\norm}[1]{\left\Vert #1\right\Vert}
+\newcommand{\defas}{\buildrel \rm def \over =}
+\newcommand{\wkstarconv}{\buildrel \rm wk* \over \longrightarrow}
+\newcommand{\linf}{\ell_\infty}
+\newcommand{\ltwo}{\ell_2}
+\newcommand{\lone}{\ell_1}
+\newcommand{\Linf}{{\cal L}_\infty}
+\newcommand{\Ltwo}{{\cal L}_2}
+\newcommand{\Lone}{{\cal L}_1}
+\newcommand{\Hinf}{{\cal H}_\infty}
+\newcommand{\cee}{{\cal C}}
+\newcommand{\arr}{{\cal R}}
+\newcommand{\zee}{{\cal Z}}
+\newcommand{\pee}{{\cal P}}
+\newcommand{\ess}{{\cal S}}
+\newcommand{\Vee}{{\cal V}}
+\newcommand{\sign}{\hbox{\rm sign}}
+\newcommand{\incnorm}[1]{\norm{#1}_\Delta}
+\newcommand{\theset}[1]{\left\{#1\right\}}
+\newcommand{\suchthat}[1]{\left|\thinspace#1\right.}
+\newcommand{\essup}[1]{
+	\begin{array}[t]{c}
+		{\hbox{\rm ess}\sup}\\[-3pt]
+		{\scriptstyle{#1}}
+	\end{array}}

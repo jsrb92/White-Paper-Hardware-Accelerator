@@ -1,0 +1,71 @@
+% 9 essential LaTeX packages everyone should use
+%
+%- See more at: http://www.howtotex.com/packages/9-essential-latex-packages-everyone-should-use/#sthash.il02su4m.dpuf
+%
+
+% amsmath
+%------------------------------------------------------------------------------------
+\usepackage{amsmath}
+
+% The amsmath package is the most important package of the AMS collection. This package introduces several improvements for math environments. For example, with amsmath comes the align environment. Al my display equations are captured in an align (or align* for unnumbered equations) environment, even if there�s nothing to align. This PracTeX journal by Lars Madsen encourages the use of the amsmath environments.
+%
+
+% geometry
+%------------------------------------------------------------------------------------
+\usepackage[a4paper]{geometry}
+
+% To adjust the margins of pages, the geometry package comes in handy. The default page margins of the entire document can be altered with package options (the syntax between square brackets after \usepackage). I use this package most of the time to create A4 paper margins, which is done with the a4paper option.
+%
+% With this package it is also possible to change the margins of one particular page as was described in this post. Another post on howtoTeX.com about the geometry package is about resetting two-sided document margins.
+%
+
+% graphicx
+%------------------------------------------------------------------------------------
+\usepackage{graphicx}
+
+% Nothing special about the graphicx package, but it probably is the most important of all. This package introduces the \includegraphics command, which is needed for inserting figures.
+
+
+% nag
+%------------------------------------------------------------------------------------
+\RequirePackage[l2tabu, orthodox]{nag}
+% This package deserved a post on howtoTeX.com already. Actually, this package doesn�t do anything as long as your syntax is right. Load the package in the first lines of your preamble (even before the \documentclass command). It then checks for obsolete LaTeX packages and outdated commands. The documentation can be found here.
+
+% microtype
+%------------------------------------------------------------------------------------
+\usepackage{microtype}
+
+% The microtype package improves the spacing between words and letters. It does a lot more and most people won�t notice the difference. But still, the resulting document will be easier to read and looks better when microtype is loaded. Load this package after fonts, if any, as the package behavior is dependent on this font.
+
+
+% siunitx
+%------------------------------------------------------------------------------------
+\usepackage{siunitx}
+
+% The siunitx package greatly simplifies TeXing when writing scientific documents, where units and numbers are a big part of the writing. This package adds commands like \num for typesetting numbers in all sorts of ways and \si for units. The commands I use a lot are \SI and \SIrange. For example, \SI{10}{\hertz} results in �10Hz� in text (this is especially useful to prevent typo�s; I tend to write HZ or hz a lot instead of Hz). The \SIrange command requires one more input variable: \SIrange{10}{100}{\hertz} produces �10Hz to 100Hz�.
+
+% cleveref
+%------------------------------------------------------------------------------------
+\usepackage{cleveref}
+
+% Another fascinating LaTeX package is cleveref. This package introduces the \cref command. When using this command to make cross-references, instead of \ref or \eqref, a word is placed in front of the reference according to the type of reference: fig. for figures, eq. for equations. Hence, another LaTeX package that simplifies the writing. The package was earlier mentioned in this post. In that post it is also shown how to change the words in front of references.
+
+% hyperref
+%------------------------------------------------------------------------------------
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+
+% The possibilities with hyperref seem to be endless. The most prominent feature of this package is the hyperlinking; when referring to a figure, the reference becomes hyperlinked such that it takes you to the corresponding figure when you click on it.
+% Also, hyperref allows you to add PDF metadata to the compiled PDF.
+% One last note on this package: as a rule of thumb it should be loaded at the end of the preamble, after all the other packages. A few exceptions exist, such as the cleveref package that is also mentioned in this post. Hence, cleveref should be loaded after hyperref. More exceptions are listed in this post on TeX.SE.
+
+% booktabs
+%------------------------------------------------------------------------------------
+\usepackage{booktabs}
+
+% The booktabs package allows you to create tables without vertical separators. These separators are just unnecessary and plain ugly. Creating a table with booktabs is however more of a pain than the normal way of creating LaTeX tables. Therefore, I dedicated a post on how to create nice tables with the booktabs package earlier.
+
+% 
+%------------------------------------------------------------------------------------
+
+
+

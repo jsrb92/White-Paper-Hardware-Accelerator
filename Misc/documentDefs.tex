@@ -1,0 +1,42 @@
+%
+% Define List Of Things: {Graphs, Code, Definitions}
+%
+ \usepackage{tocloft}% http://ctan.org/pkg/tocloft
+ \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+ 
+ % \addcontentsline{?file?}{?kind?}{?title?} command, where ?file? is the file extension (e.g., toc), ?kind ? is the kind of entry (e.g., section or subsection), and ?title? is the (numberered) title text. In the cases where there is a number, the ?title? argument is given in the form {\numberline{number} title-text}.
+ 
+ \newcommand{\listgraphname}{List of Graphs}
+ \newlistof{graph}{grafo}{\listgraphname}
+ \newcommand{\graph}[1]{%
+   \refstepcounter{graph}
+   \addcontentsline{grafo}{graph}
+   {\protect\numberline{\thechapter.\thegraph}#1}\par
+  }%\newcommand{\graph}[1]
+
+ \newcommand{\listcodename}{List of Code}
+ \newlistof{code}{loc}{\listcodename}
+ \newcommand{\code}[1]{%
+   \refstepcounter{code}
+   \par\noindent\textbf{Code \thecode. #1}\par
+   \addcontentsline{loc}{code}
+   {\protect\numberline{\thechapter.\thecode}#1}\par
+  }%\newcommand{\code}[1]
+
+ \newcommand{\listdefinicionname}{List of Definitions}
+ \newlistof{definicion}{lod}{\listdefinicionname}
+ \newcommand{\definicion}[1]{%
+   \refstepcounter{definicion}
+   \par\noindent\textbf{Def. \thedefinicion. #1}
+   \vspace{2mm}\hrule\vspace{2mm}
+   \addcontentsline{lod}{definicion}
+   {\protect\numberline{\thechapter.\thedefinicion}#1}\par
+ }%\newcommand{\definicion}[1]
+
+
+\makeatletter
+ \preto\chapter{\addtocontents{loc}{\protect\addvspace{10\p@}}}%
+ \preto\chapter{\addtocontents{grafo}{\protect\addvspace{10\p@}}}%
+ \preto\chapter{\addtocontents{lod}{\protect\addvspace{10\p@}}}%
+\makeatother
+

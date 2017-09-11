@@ -1,0 +1,165 @@
+% 
+%	Cool Fonts
+%   ----------
+%
+ \message{*[fontsAndColors]* Fonts and Colors.................................[sub defs]}
+% RSFS:
+ \DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}
+ \DeclareSymbolFontAlphabet{\mathrsfs}{rsfs}
+% In mathrsfs.sty, this font is defined as \mathscr
+%
+ \def\set12{\newfont{\size12}{cmbx12}}
+
+% Euler calligraphic:
+%\DeclareMathAlphabet\EuScript{U}{eus}{m}{n}
+%\SetMathAlphabet\EuScript{bold}{U}{eus}{b}{n}
+% In mathcal.sty, this font is defined either as \mathcal or \mathscr
+
+%\DeclareFontFamily{OT1}{pun}{}
+%\DeclareFontShape{OT1}{pun}{m}{n}{<5> <6> <7> <8> <9> <10> gen * pun }{}
+
+%\DeclareFontFamily{OT1}{put}{}
+%\DeclareFontShape{OT1}{put}{m}{n}{<5> <6> <7> <8> <9> <10> gen * put }{}
+
+%\DeclareFontFamily{OT1}{pop}{}
+%\DeclareFontShape{OT1}{pop}{m}{n}{<5> <6> <7> <8> <9> <10> gen * pop }{}
+
+%\DeclareFontFamily{OT1}{psyr}{}			% used in NSFproposal (?)
+%\DeclareFontShape{OT1}{psyr}{m}{n}{<-> psyr}{}
+%\def\times{{\fontfamily{psyr}\selectfont\char180}}
+
+ \def\cool#1{{\fontfamily{cmss}\selectfont #1}}
+ \def\cools#1{{\emph{\fontfamily{cmss}\selectfont #1}}}
+ \def\CMMSfont#1{{\fontfamily{cmss}\selectfont #1}}
+ 
+ %
+ %	My Colors
+ %
+% \usepackage[dvipsnames*,svgnames,x11names]{xcolor}
+ \usepackage{xcolor}
+ % Within xcolor.sty, the following color names are defined: 
+ % red, green, blue, cyan, magenta, yellow, black, gray, white,
+ % darkgray, lightgray, brown, lime, olive, orange, pink,
+ % purple, teal, violet.
+ %
+ \input{Misc/BasicColors} % generic HTML colors
+ \input{Misc/UTcolors}    % as defined by UT Website
+
+      \providecolor{UTcolor}{rgb}{1.0, 0.3, 0.0}
+  \providecolor{burntOrange}{rgb}{0.7, 0.2, 0.0}
+ 
+         \providecolor{azul}{rgb}{0.0, 0.0, 1.0}
+       \providecolor{morado}{rgb}{0.5, 0.0, 1.0}
+         \providecolor{rojo}{rgb}{1.0, 0.0, 0.0}
+     \providecolor{amarillo}{rgb}{1.0, 1.0, 0.0}
+        \providecolor{verde}{rgb}{0.0, 1.0, 0.0}
+        \providecolor{anhil}{rgb}{0.0, 1.0, 1.0}
+
+       \providecolor{marron}{rgb}{0.4, 0.2, 0.0}
+  \providecolor{marronClaro}{rgb}{0.6, 0.3, 0.0}
+   \providecolor{verdeClaro}{rgb}{0.0, 0.7, 0.0}
+  \providecolor{verdeOscuro}{rgb}{0.0, 0.4, 0.0}
+   \providecolor{azulOscuro}{rgb}{0.0, 0.0, 0.5}
+   \providecolor{rojoOscuro}{rgb}{0.5, 0.0, 0.0}
+   \providecolor{anaranjado}{rgb}{1.0, 0.5, 0.0}
+      \providecolor{naranja}{rgb}{1.0, 0.5, 0.0}
+\providecolor{naranjaOscuro}{rgb}{0.8, 0.4, 0.0}
+        \providecolor{oliva}{rgb}{0.5, 0.5, 0.0}
+      \providecolor{lavanda}{rgb}{0.6, 0.0, 1.0}
+    \providecolor{escarlata}{rgb}{0.9, 0.0, 0.2} 
+     \providecolor{turquesa}{rgb}{0.0, 1.0, 0.5}
+       \providecolor{fuscia}{rgb}{1.0, 0.0, 1.0}
+   \providecolor{chocolates}{rgb}{0.8, 0.4, 0.1}
+     \providecolor{orquidea}{rgb}{0.8, 0.4, 0.8}
+       \providecolor{rosado}{rgb}{1.0, 0.7, 0.8}
+        \providecolor{trigo}{rgb}{1.0, 0.9, 0.7}
+         \providecolor{agua}{rgb}{0.0, 1.0, 1.0}
+       \providecolor{marfil}{rgb}{1.0, 1.0, 0.9}
+        \providecolor{plata}{rgb}{0.8, 0.8, 0.8}
+\providecolor{verdeAmarillo}{rgb}{0.5, 1.0, 0.0}
+
+      \providecolor{luzRoja}{rgb}{1.0, 0.8, 0.8}
+  \providecolor{luzAmarilla}{rgb}{1.0, 1.0, 0.8}
+   \providecolor{luzNaranja}{rgb}{1.0, 0.9, 0.8}
+     \providecolor{luzVerde}{rgb}{0.8, 1.0, 0.8}
+     \providecolor{luzAnhil}{rgb}{0.8, 1.0, 1.0}
+      \providecolor{luzAzul}{rgb}{0.8, 0.8, 1.0}
+    \providecolor{luzMorada}{rgb}{0.9, 0.8, 1.0}
+   \providecolor{luzVioleta}{rgb}{1.0, 0.8, 0.8}
+
+ \newcommand{\burntOrange}[1]{\color{burntOrange}#1}
+ \newcommand{\amarillo}   [1]{\color{amarillo}#1}
+ \newcommand{\azul}       [1]{\color{azul}#1}
+ \newcommand{\naranja}    [1]{\color{naranja}#1}
+ \newcommand{\rojo}       [1]{\color{rojo}#1}
+ \newcommand{\verde}      [1]{\color{verde}#1}
+ \newcommand{\morado}     [1]{\color{morado}#1}
+ \newcommand{\anhil}      [1]{\color{anhil}#1}
+ \newcommand{\marron}     [1]{\color{marron}#1}
+ \newcommand{\verdeOscuro}[1]{\color{verdeOscuro}#1}
+ \newcommand{\azulOscuro} [1]{\color{azulOscuro}#1}
+ \newcommand{\rojoOscuro} [1]{\color{rojoOscuro}#1}
+
+%\DeclareFixedFont{\ninsfb}{OT1}{phv}{b}{n}{9}
+%\DeclareFixedFont{\ninsf}{OT1}{phv}{m}{n}{9}
+%\DeclareFixedFont{\egtsf}{OT1}{phv}{m}{n}{8}
+%\DeclareFixedFont{\egtsfb}{OT1}{phv}{b}{n}{8}
+%\DeclareFixedFont{\sevsf}{OT1}{phv}{m}{n}{7}
+%\DeclareFixedFont{\bannerfnt}{OT1}{phv}{b}{n}{10}
+%\DeclareFixedFont{\pnumfnt}{OT1}{phv}{b}{n}{18}
+%\DeclareFixedFont{\twlsfb}{OT1}{phv}{b}{n}{12}
+%\DeclareFixedFont{\tensfb}{OT1}{phv}{b}{n}{10}
+%\DeclareFixedFont{\tensf}{OT1}{phv}{m}{n}{10}
+
+%\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+%\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+%\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+%\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+%\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+%\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+%\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+%\DeclareRobustCommand*\cal{\@fontswitch{\relax}{\mathcal}}
+%\DeclareRobustCommand*\mit{\@fontswitch{\relax}{\mathnormal}}
+
+%\DeclareFontFamily{OT1}{msbm}{}
+%\DeclareFontShape{OT1}{msbm}{m}{n}{<5> <6> <7> <8> <9> <10> gen * msbm }{}
+
+%\renewcommand\bb{\fontfamily{msbm}\selectfont}
+%\newcommand\bi{\fontseries{bc}\fontshape{it}\selectfont}
+
+% fonts for headings in Helvetica. Edit if you have no such fonts
+ \newfont{\helvix}    {phvr at 9pt}  % roman9
+ \newfont{\helvixb}   {phvb at 9pt}  % bold9
+ \newfont{\helvixo}   {phvro at 9pt} % italic9
+ \newfont{\helvxviiib}{phvb at 18pt} % bold18
+
+ %-----------------------------------------
+ %
+ \newfont{\theoremFont}{cmssbx10 scaled\magstep3}
+ \newfont{\italicFont}{cmbxsl10 scaled\magstep3}
+ \newfont{\mathFont}{cmbxti10 scaled\magstep3}
+ \newfont{\textFont}{cmr10 scaled  2000}
+ \newfont{\smallCap}{cmtcsc10 scaled  2000}
+ \newfont{\typedText}{cmtex10 scaled  2000}
+ \newfont{\textTyped}{cmtt10 scaled  2000}
+ \newfont{\DunH}{cmdunh10 scaled 2000}
+ \newfont{\dunh}{cmdunh10 scaled 1000}
+ \newfont{\go}{ygoth.tfm scaled 1200}                 % gothic font (usual)
+ \newfont{\biggo}{ygoth.tfm scaled 3583}              % gothic font (Big Sized - Huge)
+ \newfont{\rope}{cmsy10 scaled 1200}                  % font with rope
+ \newfont{\fib}{cmfi10 scaled 1200}
+ \newfont{\bigfib}{cmfi10 scaled 3583}
+ \newfont{\funny}{cmff10 scaled 1200}
+ \newfont{\pbk}{pbkd.tfm scaled 1200}
+ \newfont{\msam}{msam10.tfm scaled 1200}
+ \newfont{\msbm}{msbm10.tfm scaled 1200}
+ \newfont{\eusm}{eusm10.tfm scaled 1200}
+ \newfont{\eufm}{eufm10.tfm scaled 1200}
+ \newfont{\eusb}{eusb10.tfm scaled 1200}
+ \newfont{\eurb}{eurb10.tfm scaled 1200}
+ \newfont{\eufb}{eufb10.tfm scaled 1200}
+ \newfont{\eurm}{eurm10.tfm scaled 1200}
+ \newfont{\euex}{euex10.tfm scaled 1200}
+
+ \def\nicer#1{{\AsIs{\fontfamily{dunh}\selectfont #1}}}
+
